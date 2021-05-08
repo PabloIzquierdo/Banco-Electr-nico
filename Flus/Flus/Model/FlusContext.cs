@@ -13,6 +13,6 @@ namespace Flus.Model
         {
         }
         
-        public DbSet<FlusModel> FlusModel { get; set; }
+        public DbSet<FlusModel> FlusModels { get; set; }
     }
 }

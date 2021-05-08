@@ -7,9 +7,9 @@ namespace Flus.Model
 {
     public class FlusModel
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public bool IsComplete { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public bool isComplete { get; set; }
 
     }
 }

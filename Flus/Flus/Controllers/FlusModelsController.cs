@@ -12,7 +12,7 @@ namespace Flus.Controllers
     [Route("api/FlusModels")]
     [ApiController]
     public class FlusModelsController : ControllerBase
-    {
+    { 
         private readonly FlusContext _context;
 
         public FlusModelsController(FlusContext context)
@@ -24,14 +24,14 @@ namespace Flus.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FlusModel>>> GetFlusModel()
         {
-            return await _context.FlusModel.ToListAsync();
+            return await _context.FlusModels.ToListAsync();
         }
 
         // GET: api/FlusModels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FlusModel>> GetFlusModel(long id)
         { 
-            var flusModel = await _context.FlusModel.FindAsync(id);
+            var flusModel = await _context.FlusModels.FindAsync(id);
 
             if (flusModel == null)
             {
@@ -47,7 +47,7 @@ namespace Flus.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFlusModel(long id, FlusModel flusModel)
         {
-            if (id != flusModel.Id)
+            if (id != flusModel.id)
             {
                 return BadRequest();
             }
@@ -77,33 +77,36 @@ namespace Flus.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<FlusModel>> PostFlusModel(FlusModel flusModel)
         {
-            _context.FlusModel.Add(flusModel);
+            _context.FlusModels.Add(flusModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetFlusModel), new { id = flusModel.Id }, flusModel);
+            return CreatedAtAction(nameof(GetFlusModel), new { id = flusModel.id }, flusModel);
         }
 
         // DELETE: api/FlusModels/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<FlusModel>> DeleteFlusModel(long id)
         {
-            var flusModel = await _context.FlusModel.FindAsync(id);
+            var flusModel = await _context.FlusModels.FindAsync(id);
             if (flusModel == null)
             {
                 return NotFound();
             }
 
-            _context.FlusModel.Remove(flusModel);
+            _context.FlusModels.Remove(flusModel);
             await _context.SaveChangesAsync();
 
-            return flusModel;
+            return NoContent();
         }
 
         private bool FlusModelExists(long id)
         {
-            return _context.FlusModel.Any(e => e.Id == id);
+            return _context.FlusModels.Any(e => e.id == id);
         }
     }
 }
