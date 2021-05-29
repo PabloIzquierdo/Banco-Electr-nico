@@ -1,0 +1,14 @@
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\BusinessFlus.dll
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\BusinessFlus.pdb
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\DataFlus.dll
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\EntityFlus.dll
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\EntityFramework.dll
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\DataFlus.pdb
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\DataFlus.dll.config
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\EntityFlus.pdb
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\EntityFramework.xml
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.csprojAssemblyReference.cache
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.csproj.CoreCompileInputs.cache
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.csproj.CopyComplete
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.dll
+C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.pdb

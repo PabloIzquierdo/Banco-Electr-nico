@@ -1,0 +1,14 @@
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\DataFlus.dll.config
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\DataFlus.dll
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\DataFlus.pdb
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFlus.dll
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFramework.dll
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFlus.pdb
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFramework.xml
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.csprojAssemblyReference.cache
+C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.csproj.CoreCompileInputs.cache
+C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.csproj.CopyComplete
+C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.dll
+C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.pdb
