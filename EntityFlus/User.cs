@@ -11,7 +11,8 @@ namespace EntityFlus
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,7 @@ namespace EntityFlus
         {
             this.BankAccounts = new HashSet<BankAccount>();
         }
-    
+
         public int Id { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -33,8 +34,16 @@ namespace EntityFlus
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Rol { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BankAccount> BankAccounts { get; set; }
+
+        [StringLength(100, ErrorMessage = "La contraseña debe tener minimo 6 caracteres", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Tiene que coincidir con la contraseña")]
+        public string PasswordConfirm { get; set; }
     }
 }
