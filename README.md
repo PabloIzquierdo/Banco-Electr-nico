@@ -1,1 +1,1 @@
-"#Readme de Banco Electrónico"
+This repository is a Digital Bank web page simulator, this project is developed in ASP .NET Framework MVC. The project contains a simple DB with: users, bank operations, bank accounts and transactions. The name of the project is Flus. It is based on three layers: business logic, data context, and entity models.
