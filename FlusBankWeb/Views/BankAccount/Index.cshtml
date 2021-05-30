@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EntityFlus.BankAccount>
+
+@{
+    ViewBag.Title = "Cuentas bancarias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cuentas bancarias</h2>
+
+<p>
+    @Html.ActionLink("Crear cuenta", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Moneda</label>
+        </th>
+        <th>
+            <label>Fecha de creación</label>
+        </th>
+        <th>
+            <label>Tipo</label>
+        </th>
+        <th>
+            <label>Saldo</label>
+        </th>
+        <th>
+            <label>Comisión</label>
+        </th>
+        <th>
+            <label>IBAN</label>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commission)<span>/Año</span>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

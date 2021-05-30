@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Emil</label>
+            <label class = "control-label col-md-2">Email</label>
             <div class="col-md-10">
                 <input class = "form-control" type="text" name="Email" id="Email" />
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })

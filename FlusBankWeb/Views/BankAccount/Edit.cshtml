@@ -1,0 +1,49 @@
+﻿@model EntityFlus.BankAccount
+
+@{
+    ViewBag.Title = "Editar cuenta de banco";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar cuenta de banco</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tipo de cuenta</label>
+            <div class="col-md-5">
+                <select class="form-control" name="CurrencyId" id="CurrencyId">
+                    <option value="1">USD</option>
+                    <option value="2">JPY</option>
+                    <option value="3">GBP</option>
+                    <option value="4">RUB</option>
+                    <option value="5">MXN</option>
+                    <option value="6">EUR</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Editar cuenta" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

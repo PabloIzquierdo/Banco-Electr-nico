@@ -7,8 +7,8 @@ namespace FlusBankWeb.Utilities
 {
     public class Enums
     {
-        public static Currency currency;
-        public static Comission comission;
+        public Currency currency;
+        public Comission comission;
         public enum Currency{
             USD = 1, //Dollar
             JPY = 2, //Yen Japanese
@@ -26,12 +26,33 @@ namespace FlusBankWeb.Utilities
             Remunerada = 72
         }
 
-        public static Comission GetComission()
+        public int GetComissionValue(Comission com)
+        {
+            switch (com)
+            {
+                case Comission.Ahorros:
+                    return 80;
+
+                case Comission.Corriente:
+                    return 60;
+
+                case Comission.Nómina:
+                    return 0;
+
+                case Comission.Remunerada:
+                    return 72;
+
+                default:
+                    return 0;
+            }
+        }
+
+        public Comission GetComission()
         {
             return comission;
         }
 
-        public static void SetComission(string typeCuenta)
+        public void SetComission(string typeCuenta)
         {
             switch (typeCuenta)
             {
@@ -54,45 +75,39 @@ namespace FlusBankWeb.Utilities
             }
         }
 
-        public static Currency GetCurrency()
+        public Currency GetCurrency()
         {
             return currency;
         }
 
-        public static string GetCurrencyString()
+        public string GetCurrencyString()
         {
             switch (currency)
             {
                 case Currency.USD:
                     return "USD";
-                    break;
 
                 case Currency.JPY:
                     return "JPY";
-                    break;
 
                 case Currency.GBP:
                     return "GBP";
-                    break;
 
                 case Currency.RUB:
                     return "RUB";
-                    break;
 
                 case Currency.MXN:
                     return "MXN";
-                    break;
 
                 case Currency.EUR:
                     return "EUR";
-                    break;
+
                 default:
                     return null;
-                    break;
 
             }
         }
-        public static void SetCurrency(int id)
+        public void SetCurrency(int id)
         {
             switch (id)
             {

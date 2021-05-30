@@ -64,5 +64,19 @@ namespace FlusBankWeb.Utilities
 
             return false;
         }
+
+        public static string GenerateCode()
+        {
+            string code = "";
+            for (int i = 0; i < 16; i++)
+            {
+                Random number = new Random();
+                code += number.Next(9).ToString();
+                if (code.Length == 4 || code.Length == 9 || code.Length == 14)
+                    code += " ";
+            }
+
+            return code;
+        }
     }
 }
