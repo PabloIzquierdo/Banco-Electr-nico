@@ -12,3 +12,4 @@ C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.csproj.CoreCompileInputs.
 C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.csproj.CopyComplete
 C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.dll
 C:\Users\Pablo\Desktop\TFC\DataFlus\obj\Debug\DataFlus.pdb
+C:\Users\Pablo\Desktop\TFC\DataFlus\bin\Debug\EntityFlus.dll.config

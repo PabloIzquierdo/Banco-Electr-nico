@@ -9,3 +9,4 @@ C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.core.dll
 C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.abstractions.xml
 C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.core.xml
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csproj.CopyComplete
+C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\EntityFlus.dll.config

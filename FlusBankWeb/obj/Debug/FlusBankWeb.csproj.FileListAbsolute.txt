@@ -113,3 +113,4 @@ C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\EntityFlus.pdb
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.dll
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.pdb
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.dll.config
+C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\EntityFlus.dll.config

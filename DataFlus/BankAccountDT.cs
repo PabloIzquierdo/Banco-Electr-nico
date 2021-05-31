@@ -39,7 +39,7 @@ namespace DataFlus
             using (var db = new FlusBankContext())
             {
                 var oldAccount = db.BankAccounts.Where(acc => acc.Id == account.Id).FirstOrDefault();
-                oldAccount = account;
+                oldAccount.CurrencyId = account.CurrencyId;
                 db.SaveChanges();
             }
         }
