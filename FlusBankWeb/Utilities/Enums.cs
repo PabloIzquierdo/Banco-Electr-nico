@@ -9,7 +9,8 @@ namespace FlusBankWeb.Utilities
     {
         public Currency currency;
         public Comission comission;
-        public enum Currency{
+        public enum Currency
+        {
             USD = 1, //Dollar
             JPY = 2, //Yen Japanese
             GBP = 3, //Pound sterling

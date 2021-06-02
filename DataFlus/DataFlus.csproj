@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06AF6193-87CF-4B29-8356-C0BD3C158B1C}</ProjectGuid>
+    <ProjectGuid>{4B54E713-4C4E-42EE-98B4-CE5CA56AC977}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataFlus</RootNamespace>
@@ -52,39 +52,38 @@
   <ItemGroup>
     <Compile Include="BankAccountDT.cs" />
     <Compile Include="BanksOperationsDT.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="ModelFlusBank.Context.cs">
+    <Compile Include="FlusContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelFlusBank.Context.tt</DependentUpon>
+      <DependentUpon>FlusContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelFlusBank.Designer.cs">
+    <Compile Include="FlusContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelFlusBank.edmx</DependentUpon>
+      <DependentUpon>FlusContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersDT.cs" />
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ModelFlusBank.edmx">
+    <EntityDeploy Include="FlusContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelFlusBank.Designer.cs</LastGenOutput>
+      <LastGenOutput>FlusContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ModelFlusBank.edmx.diagram">
-      <DependentUpon>ModelFlusBank.edmx</DependentUpon>
+    <None Include="FlusContext.edmx.diagram">
+      <DependentUpon>FlusContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelFlusBank.Context.tt">
+    <Content Include="FlusContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelFlusBank.Context.cs</LastGenOutput>
-      <DependentUpon>ModelFlusBank.edmx</DependentUpon>
+      <LastGenOutput>FlusContext.Context.cs</LastGenOutput>
+      <DependentUpon>FlusContext.edmx</DependentUpon>
       <CustomToolNamespace>EntityFlus</CustomToolNamespace>
     </Content>
   </ItemGroup>
@@ -93,7 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityFlus\EntityFlus.csproj">
-      <Project>{8dd031dd-80e3-4f1e-9229-fa240db46333}</Project>
+      <Project>{7ff27029-f210-4f45-bee5-ed9d00dad3fa}</Project>
       <Name>EntityFlus</Name>
     </ProjectReference>
   </ItemGroup>

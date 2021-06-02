@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EFC6F3EA-5677-4956-874C-1B2C2E7DF24C}</ProjectGuid>
+    <ProjectGuid>{430EEB30-027A-47E8-8566-E8062116137A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BusinessFlus</RootNamespace>
@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataFlus\DataFlus.csproj">
-      <Project>{06af6193-87cf-4b29-8356-c0bd3c158b1c}</Project>
+      <Project>{4b54e713-4c4e-42ee-98b4-ce5ca56ac977}</Project>
       <Name>DataFlus</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntityFlus\EntityFlus.csproj">
-      <Project>{8dd031dd-80e3-4f1e-9229-fa240db46333}</Project>
+      <Project>{7ff27029-f210-4f45-bee5-ed9d00dad3fa}</Project>
       <Name>EntityFlus</Name>
     </ProjectReference>
   </ItemGroup>

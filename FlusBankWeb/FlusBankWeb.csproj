@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9BADCB97-0D3D-4864-8B98-D249CEE7FAA8}</ProjectGuid>
+    <ProjectGuid>{3C7AC185-F566-49FA-896E-8E911EA7668A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -18,7 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44369</IISExpressSSLPort>
+    <IISExpressSSLPort>44397</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -169,7 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BankAccountController.cs" />
-    <Compile Include="Controllers\BanksOperationsController.cs" />
+    <Compile Include="Controllers\BanksOperationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -247,17 +247,18 @@
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\BankAccount\Index.cshtml" />
     <Content Include="Views\BankAccount\Create.cshtml" />
-    <Content Include="Views\BankAccount\Edit.cshtml" />
     <Content Include="Views\BankAccount\Details.cshtml" />
+    <Content Include="Views\BankAccount\Edit.cshtml" />
     <Content Include="Views\BankAccount\Delete.cshtml" />
-    <Content Include="Views\BanksOperations\Index.cshtml" />
-    <Content Include="Views\BanksOperations\Create.cshtml" />
-    <Content Include="Views\BanksOperations\Edit.cshtml" />
-    <Content Include="Views\BanksOperations\Details.cshtml" />
-    <Content Include="Views\BanksOperations\Delete.cshtml" />
+    <Content Include="Views\BanksOperation\Create.cshtml" />
+    <Content Include="Views\BanksOperation\Edit.cshtml" />
+    <Content Include="Views\BanksOperation\Details.cshtml" />
+    <Content Include="Views\BanksOperation\Delete.cshtml" />
+    <Content Include="Views\BanksOperation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UsersController\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -274,20 +275,17 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessFlus\BusinessFlus.csproj">
-      <Project>{efc6f3ea-5677-4956-874c-1b2c2e7df24c}</Project>
+      <Project>{430eeb30-027a-47e8-8566-e8062116137a}</Project>
       <Name>BusinessFlus</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntityFlus\EntityFlus.csproj">
-      <Project>{8dd031dd-80e3-4f1e-9229-fa240db46333}</Project>
+      <Project>{7ff27029-f210-4f45-bee5-ed9d00dad3fa}</Project>
       <Name>EntityFlus</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -301,17 +299,14 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>61264</DevelopmentServerPort>
+          <DevelopmentServerPort>57461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44369/</IISUrl>
+          <IISUrl>https://localhost:44397/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
-          <servers defaultServer="SelfHostServer">
-            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:61264/" workingDir="" />
-          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

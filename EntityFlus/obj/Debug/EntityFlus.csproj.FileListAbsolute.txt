@@ -1,12 +1,5 @@
 C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\EntityFlus.dll
 C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\EntityFlus.pdb
-C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csprojAssemblyReference.cache
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csproj.CoreCompileInputs.cache
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.dll
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.pdb
-C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.abstractions.dll
-C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.core.dll
-C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.abstractions.xml
-C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\xunit.core.xml
-C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csproj.CopyComplete
-C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\EntityFlus.dll.config

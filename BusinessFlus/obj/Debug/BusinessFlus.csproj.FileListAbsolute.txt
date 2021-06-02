@@ -12,4 +12,3 @@ C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.csproj.CoreCompil
 C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.csproj.CopyComplete
 C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.dll
 C:\Users\Pablo\Desktop\TFC\BusinessFlus\obj\Debug\BusinessFlus.pdb
-C:\Users\Pablo\Desktop\TFC\BusinessFlus\bin\Debug\EntityFlus.dll.config

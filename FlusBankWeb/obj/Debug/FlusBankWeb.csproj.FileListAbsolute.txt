@@ -108,9 +108,8 @@ C:\Users\Pablo\Desktop\TFC\FlusBankWeb\obj\Debug\FlusBankWeb.dll
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\obj\Debug\FlusBankWeb.pdb
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\BusinessFlus.dll
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\EntityFlus.dll
+C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.dll
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\BusinessFlus.pdb
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\EntityFlus.pdb
-C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.dll
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.pdb
 C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\DataFlus.dll.config
-C:\Users\Pablo\Desktop\TFC\FlusBankWeb\bin\EntityFlus.dll.config

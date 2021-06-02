@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Text;
 using System.Security.Cryptography;
-using System.Text;
-using System.Web;
 
-namespace FlusBankWeb.Utilities
+namespace DataFlus.Utilities
 {
     public class Utilities
     {
+        public static int generateIndex(int id)
+        {
+            return id+=1;
+        }
+
         public string setKeySHA1(string cadena)
         {
 

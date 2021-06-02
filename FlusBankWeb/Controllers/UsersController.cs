@@ -29,8 +29,8 @@ namespace FlusBankWeb.Controllers
             {
                 Utilities.Utilities pass = new Utilities.Utilities();
                 user.Email = user.Email.ToLower();
-                user.Name = user.Name.Substring(0, 1).ToUpper() + user.Name.Substring(1, user.Name.Length-1).ToLower();
-                user.Surname = user.Surname.Substring(0, 1).ToUpper() + user.Surname.Substring(1, user.Surname.Length-1).ToLower();
+                user.Name = user.Name.Substring(0, 1).ToUpper() + user.Name.Substring(1, user.Name.Length - 1).ToLower();
+                user.Surname = user.Surname.Substring(0, 1).ToUpper() + user.Surname.Substring(1, user.Surname.Length - 1).ToLower();
                 user.EmailConfirmed = false;
                 user.PhoneNumberConfirmed = false;
                 user.UserName = user.Name.Substring(0, 1).ToUpper() + user.Surname.Substring(0, 1).ToUpper();
