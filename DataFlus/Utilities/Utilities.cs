@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
+using System;
 
 namespace DataFlus.Utilities
 {
@@ -7,10 +8,46 @@ namespace DataFlus.Utilities
     {
         public static int generateIndex(int id)
         {
-            return id+=1;
+            return id += 1;
         }
 
-        public string setKeySHA1(string cadena)
+        public static bool ValidatePassword(string pass, string passConfirm)
+        {
+            bool ContainNumber = false, ContainUpper = false, ContainLower = false;
+            char[] key = pass.ToCharArray();
+            for (int i = 0; i < key.Length; i++)
+            {
+                if (char.IsNumber(key[i]))
+                    ContainNumber = true;
+                else if (char.IsUpper(key[i]))
+                    ContainUpper = true;
+                else if (char.IsLower(key[i]))
+                    ContainLower = true;
+            }
+
+            if (pass.CompareTo(passConfirm) == 0)
+                if (ContainNumber && ContainUpper && ContainLower)
+                    return true;
+                else
+                {
+                    throw new Exception("La contraseña debe contener un número, una letra minúscula y una letra mayúscula");
+                }
+
+            else
+            {
+                throw new Exception("Las contraseñas no coinciden");
+            }
+        }
+
+        public static bool ValidateEmail(string mail)
+        {
+            if (mail.Contains("@") && mail.Contains("."))
+                return true;
+
+            throw new Exception("El email no es válido");
+        }
+
+        public static string setKeySHA1(string cadena)
         {
 
             UTF8Encoding enc = new UTF8Encoding();

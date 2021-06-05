@@ -60,5 +60,35 @@ namespace DataFlus
                 db.SaveChanges();
             }
         }
+
+        public bool RegistryIdentity(string identity)
+        {
+            using(var db = new FlusBankEntities())
+            {
+                var query = from user in db.Users
+                            where user.DNI == identity
+                            select user;
+
+                if (query.FirstOrDefault() == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public bool RegistryMail(string mail)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                var query = from user in db.Users
+                            where user.Email == mail
+                            select user;
+
+                if (query.FirstOrDefault() == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
     }
 }
