@@ -18,29 +18,10 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Operación</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <label class="control-label col-md-2">Descripción</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Tipo</label>
-            <div class="col-md-10">
-                <select class="form-control" name="Type" id="Type">
-                    <option value="1">Pasivo</option>
-                    <option value="2">Activo</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>
         </div>
 

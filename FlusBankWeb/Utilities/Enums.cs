@@ -9,6 +9,13 @@ namespace FlusBankWeb.Utilities
     {
         public Currency currency;
         public Comission comission;
+        public Operation operation;
+
+        public enum Operation
+        {
+            Pasivo = 1,
+            Activo = 2
+        }
         public enum Currency
         {
             USD = 1, //Dollar
@@ -25,6 +32,27 @@ namespace FlusBankWeb.Utilities
             Nómina = 0,
             Ahorros = 80,
             Remunerada = 72
+        }
+
+        public Operation GetOperation()
+        {
+            return operation;
+        }
+
+        public int GetOperationValue(Operation op)
+        {
+            if (op == Operation.Pasivo)
+                return 1;
+            else
+                return 2;
+        }
+
+        public void SetOperationValue(int value)
+        {
+            if (value == 1)
+                operation = Operation.Pasivo;
+            else
+                operation = Operation.Activo;
         }
 
         public int GetComissionValue(Comission com)

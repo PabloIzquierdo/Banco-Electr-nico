@@ -21,7 +21,8 @@ namespace EntityFlus
         public string Description { get; set; }
         public double Amount { get; set; }
         public string Date { get; set; }
-    
+        public string IBAN { get; set; }
+
         public virtual BankAccount BankAccount { get; set; }
         public virtual BanksOperation BanksOperation { get; set; }
     }

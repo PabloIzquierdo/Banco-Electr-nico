@@ -1,0 +1,61 @@
+﻿@model IEnumerable<EntityFlus.Transaction>
+
+@{
+    ViewBag.Title = "Movimientos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movimientos</h2>
+
+<p>
+    @Html.ActionLink("Crear transacción", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BankAccointId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankOperationId)
+        </th>
+        <th>
+            <label>Cuenta destino</label>
+        </th>
+        <th>
+            <label>Concepto</label>
+        </th>
+        <th>
+            <label>Cantidad</label>
+        </th>
+        <th>
+            <label>Fecha</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankAccointId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankOperationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Addressee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id })
+    </tr>
+}
+
+</table>

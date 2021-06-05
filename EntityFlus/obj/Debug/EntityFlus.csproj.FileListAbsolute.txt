@@ -3,3 +3,4 @@ C:\Users\Pablo\Desktop\TFC\EntityFlus\bin\Debug\EntityFlus.pdb
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csproj.CoreCompileInputs.cache
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.dll
 C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.pdb
+C:\Users\Pablo\Desktop\TFC\EntityFlus\obj\Debug\EntityFlus.csprojAssemblyReference.cache

@@ -25,10 +25,10 @@ namespace DataFlus
                 if (countOp == 0)
                 {
                     int id = 0;
-                    while(BankOperation.Id == 0)
+                    while (BankOperation.Id == 0)
                     {
                         var currentId = db.BanksOperations.Where(op => op.Id == id).FirstOrDefault();
-                        if(currentId == null)
+                        if (currentId == null)
                         {
                             BankOperation.Id = id;
                         }
@@ -56,14 +56,8 @@ namespace DataFlus
             {
                 var oldOperation = db.BanksOperations.Where(op => op.Id == operationEdit.Id).FirstOrDefault();
 
-                int countOp = db.BanksOperations.Where(op => op.Name == operationEdit.Name).Count();
-                if (countOp == 0)
-                {
-                    oldOperation.Name = operationEdit.Name;
-                    db.SaveChanges();
-                }
-                else
-                    throw new Exception("La operación ya existe");
+                oldOperation.Description = operationEdit.Description;
+                db.SaveChanges();
             }
         }
 
