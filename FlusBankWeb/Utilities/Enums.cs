@@ -9,7 +9,7 @@ namespace FlusBankWeb.Utilities
     {
         public static Currency currency;
         public Comission comission;
-        public Operation operation;
+        public static Operation operation;
 
         public enum Operation
         {

@@ -4,6 +4,7 @@
     ViewBag.Title = "Eliminar operación";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using FlusBankWeb.Utilities;
 
 <h2>Elimnar operación</h2>
 
@@ -32,13 +33,18 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
+            @{
+                var typeOperation = new Enums();
+                typeOperation.SetOperationValue(Model.Type);
+            }
+            <span>@typeOperation.GetOperation()</span>
         </dd>
 
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

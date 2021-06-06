@@ -4,6 +4,7 @@
     ViewBag.Title = "Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using FlusBankWeb.Utilities;
 
 <h2>Detalles de la operación</h2>
 
@@ -31,7 +32,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Type)
+            @{
+                var typeOperation = new Enums();
+                typeOperation.SetOperationValue(Model.Type);
+            }
+            <span>@typeOperation.GetOperation()</span>
         </dd>
 
 
