@@ -1,42 +1,38 @@
 ﻿@model EntityFlus.BankAccount
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles cuenta bancaria";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using FlusBankWeb.Utilities;
 
-<h2>Details</h2>
+<h2>Detalles cuenta bancaria</h2>
 
 <div>
-    <h4>BankAccount</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.UserId)
+            <label>Moneda</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.UserId)
+            @{
+                var currencyType = new Enums();
+                currencyType.SetCurrency(Model.CurrencyId);
+            }
+            <span>@currencyType.GetCurrency()</span>
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CurrencyId)
+            <label>Fecha de creación</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CurrencyId)
+            @Model.TimeStamp.ToShortDateString()
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TimeStamp)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TimeStamp)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
+            <label>Tipo de cuenta</label>
         </dt>
 
         <dd>
@@ -44,7 +40,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Balance)
+            <label>Saldo</label>
         </dt>
 
         <dd>
@@ -52,7 +48,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Commission)
+            <label>Comisión anual</label>
         </dt>
 
         <dd>
@@ -60,7 +56,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Code)
+            <label>IBAN</label>
         </dt>
 
         <dd>
@@ -70,6 +66,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a la lista", "Index")
 </p>

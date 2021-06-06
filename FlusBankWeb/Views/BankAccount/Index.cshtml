@@ -4,11 +4,12 @@
     ViewBag.Title = "Cuentas bancarias";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using FlusBankWeb.Utilities;
 
 <h2>Cuentas bancarias</h2>
 
 <p>
-    @Html.ActionLink("Crear cuenta", "Create")
+    @Html.ActionLink("Crear cuenta", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -36,10 +37,14 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CurrencyId)
+                @{
+                    var currencyType = new Enums();
+                    currencyType.SetCurrency(item.CurrencyId);
+                }
+                <span>@currencyType.GetCurrency()</span>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TimeStamp)
+                @item.TimeStamp.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)

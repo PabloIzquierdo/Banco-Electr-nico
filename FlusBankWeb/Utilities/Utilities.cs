@@ -29,13 +29,12 @@ namespace FlusBankWeb.Utilities
 
         public static string GenerateCode()
         {
-            string code = "";
+            string code = "ES121234";
+            Random number = new Random();
+
             for (int i = 0; i < 16; i++)
             {
-                Random number = new Random();
-                code += number.Next(9).ToString();
-                if (code.Length == 4 || code.Length == 9 || code.Length == 14)
-                    code += " ";
+                code += number.Next(0,10).ToString();
             }
 
             return code;

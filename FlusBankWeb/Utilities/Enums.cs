@@ -7,7 +7,7 @@ namespace FlusBankWeb.Utilities
 {
     public class Enums
     {
-        public Currency currency;
+        public static Currency currency;
         public Comission comission;
         public Operation operation;
 

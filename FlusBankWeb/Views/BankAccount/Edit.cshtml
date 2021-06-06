@@ -18,7 +18,7 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            <label class="control-label col-md-2">Tipo de cuenta</label>
+            <label class="control-label col-md-2">Moneda</label>
             <div class="col-md-5">
                 <select class="form-control" name="CurrencyId" id="CurrencyId">
                     <option value="1">USD</option>
@@ -28,7 +28,7 @@
                     <option value="5">MXN</option>
                     <option value="6">EUR</option>
                 </select>
-                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CurrencyId, "", new { @class = "text-danger" })
             </div>
         </div>
 

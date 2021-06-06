@@ -4,6 +4,7 @@
     ViewBag.Title = "Eliminar cuenta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using FlusBankWeb.Utilities;
 
 <h2>Eliminar cuenta</h2>
 
@@ -13,11 +14,15 @@
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.CurrencyId)
+            <label>Moneda</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CurrencyId)
+            @{
+                var currencyType = new Enums();
+                currencyType.SetCurrency(Model.CurrencyId);
+            }
+            <span>@currencyType.GetCurrency()</span>
         </dd>
 
         <dt>
@@ -25,7 +30,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TimeStamp)
+            @Model.TimeStamp.ToShortDateString()
         </dd>
 
         <dt>
