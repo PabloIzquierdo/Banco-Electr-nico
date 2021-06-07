@@ -16,13 +16,13 @@ namespace BusinessFlus
             return obj.TransactionsList();
         }
 
-        public static void Create(Transaction transaction)
+        public static async Task Create(Transaction transaction)
         {
             try
             {
                 int idAccount = obj.ComprobateAccount(transaction.Addressee);
                 transaction.BankAccointId = idAccount;
-                obj.Create(transaction);
+                await obj.Create(transaction);
             }
             catch
             {

@@ -18,7 +18,7 @@ namespace BusinessFlus
             return obj.UserList();
         }
 
-        public static void Create(User user)
+        public static async Task Create(User user)
         {
             if (obj.RegistryMail(user.Email))
                 throw new Exception("El correo electrónico ya esta registrado");
@@ -38,7 +38,7 @@ namespace BusinessFlus
             if (Utilities.ValidatePassword(user.Password, user.PasswordConfirm))
                 user.PasswordHash = Utilities.setKeySHA1(user.Password);
 
-            obj.Create(user);
+            await obj.Create(user);
         }
 
         public static User Details(int id)
@@ -46,14 +46,14 @@ namespace BusinessFlus
             return obj.Details(id);
         }
 
-        public static void Edit(User user)
+        public static async Task Edit(User user)
         {
-            obj.Edit(user);
+            await obj.Edit(user);
         }
 
-        public static void Delete(int id)
+        public static async Task Delete(int id)
         {
-            obj.Delete(id);
+            await obj.Delete(id);
         }
 
 

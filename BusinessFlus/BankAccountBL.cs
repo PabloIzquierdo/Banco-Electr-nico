@@ -16,9 +16,9 @@ namespace BusinessFlus
         {
             return obj.BankAccountList();
         }
-        public static void Create(BankAccount account)
+        public static async Task Create(BankAccount account)
         {
-            obj.Create(account);
+            await obj.Create(account);
         }
 
         public static BankAccount Details(int id)
@@ -26,14 +26,14 @@ namespace BusinessFlus
             return obj.Details(id);
         }
 
-        public static void Edit(BankAccount account)
+        public static async Task Edit(BankAccount account)
         {
-            obj.Edit(account);
+            await obj.Edit(account);
         }
 
-        public static void Delete(int id)
+        public static async Task Delete(int id)
         {
-            obj.Delete(id);
+            await obj.Delete(id);
         }
 
         public static User GetUser(string iden)

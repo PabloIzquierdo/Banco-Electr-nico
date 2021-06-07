@@ -17,7 +17,7 @@ namespace DataFlus
             }
         }
 
-        public void Create(Transaction transaction)
+        public async Task Create(Transaction transaction)
         {
             using (var db = new FlusBankEntities())
             {
@@ -33,7 +33,7 @@ namespace DataFlus
                 }
 
                 db.Transactions.Add(transaction);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 

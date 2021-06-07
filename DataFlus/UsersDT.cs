@@ -17,12 +17,12 @@ namespace DataFlus
             }
         }
 
-        public void Create(User user)
+        public async Task Create(User user)
         {
             using (var db = new FlusBankEntities())
             {
                 db.Users.Add(user);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
@@ -34,7 +34,7 @@ namespace DataFlus
             }
         }
 
-        public void Edit(User user)
+        public async Task Edit(User user)
         {
             using (var db = new FlusBankEntities())
             {
@@ -47,17 +47,17 @@ namespace DataFlus
                 editUser.Password = editUser.PasswordHash;
                 editUser.PasswordConfirm = editUser.PasswordHash;
 
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             using (var db = new FlusBankEntities())
             {
                 var deleteUser = db.Users.Where(us => us.Id == id).FirstOrDefault();
                 db.Users.Remove(deleteUser);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 

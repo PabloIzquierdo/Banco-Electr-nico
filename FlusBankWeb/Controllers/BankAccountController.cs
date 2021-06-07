@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FlusBankWeb.Utilities;
+using System.Threading.Tasks;
 
 namespace FlusBankWeb.Controllers
 {
@@ -25,7 +26,7 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(BankAccount account)
+        public async Task<ActionResult> Create(BankAccount account)
         {
             try
             {
@@ -49,7 +50,7 @@ namespace FlusBankWeb.Controllers
                     account.Code = Utilities.Utilities.GenerateCode();
                 }
 
-                BankAccountBL.Create(account);
+                await BankAccountBL.Create(account);
 
                 return RedirectToAction("Index");
             }
@@ -73,9 +74,9 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(BankAccount account)
+        public async Task<ActionResult> Edit(BankAccount account)
         {
-            BankAccountBL.Edit(account);
+            await BankAccountBL.Edit(account);
             return RedirectToAction("Index");
         }
 
@@ -92,11 +93,11 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                BankAccountBL.Delete(id);
+                await BankAccountBL.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

@@ -13,16 +13,17 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
+                
                 return db.BankAccounts.ToList();
-
             }
         }
-        public void Create(BankAccount account)
+
+        public async Task Create(BankAccount account)
         {
             using (var db = new FlusBankEntities())
             {
                 db.BankAccounts.Add(account);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
 
             }
         }
@@ -34,23 +35,23 @@ namespace DataFlus
                 return db.BankAccounts.Where(acc => acc.Id == id).FirstOrDefault();
             }
         }
-        public void Edit(BankAccount account)
+        public async Task Edit(BankAccount account)
         {
             using (var db = new FlusBankEntities())
             {
                 var oldAccount = db.BankAccounts.Where(acc => acc.Id == account.Id).FirstOrDefault();
                 oldAccount.CurrencyId = account.CurrencyId;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             using (var db = new FlusBankEntities())
             {
                 var account = db.BankAccounts.Where(acc => acc.Id == id).FirstOrDefault();
                 db.BankAccounts.Remove(account);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 

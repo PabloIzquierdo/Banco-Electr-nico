@@ -3,6 +3,7 @@ using EntityFlus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -23,11 +24,11 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public async Task<ActionResult> Create(User user)
         {
             try
             {
-                UsersBL.Create(user);
+                await UsersBL.Create(user);
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
@@ -45,14 +46,14 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(User user)
+        public async Task<ActionResult> Edit(User user)
         {
             try
             {
                 if (Utilities.Utilities.IsNullOrEmpty(user.Email) && Utilities.Utilities.IsNullOrEmpty(user.PhoneNumber))
                     return View(user);
 
-                UsersBL.Edit(user);
+                await UsersBL.Edit(user);
                 return RedirectToAction("Index");
             }
             catch
@@ -81,11 +82,11 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                UsersBL.Delete(id);
+                await UsersBL.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

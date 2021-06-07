@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BusinessFlus;
@@ -23,12 +24,12 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(BanksOperation BankOperation)
+        public async Task<ActionResult> Create(BanksOperation BankOperation)
         {
             try
             {
                 BankOperation.Operation = BankOperation.Id+1;
-                BanksOperationsBL.Create(BankOperation);
+                await BanksOperationsBL.Create(BankOperation);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -47,11 +48,11 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(BanksOperation editOperation)
+        public async Task<ActionResult> Edit(BanksOperation editOperation)
         {
             try
             {
-                BanksOperationsBL.Edit(editOperation);
+                await BanksOperationsBL.Edit(editOperation);
                 return RedirectToAction("Index");
             }
             catch
@@ -81,11 +82,11 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                BanksOperationsBL.Delete(id);
+                await BanksOperationsBL.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

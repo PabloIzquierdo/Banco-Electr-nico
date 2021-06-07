@@ -17,9 +17,9 @@ namespace BusinessFlus
             return obj.BanksOperationsList();
         }
 
-        public static void Create(BanksOperation operation)
+        public static async Task Create(BanksOperation operation)
         {
-            obj.Create(operation);
+            await obj.Create(operation);
         }
 
         public static BanksOperation Details(int id)
@@ -27,14 +27,14 @@ namespace BusinessFlus
             return obj.Details(id);
         }
 
-        public static void Edit(BanksOperation operationEdit)
+        public static async Task Edit(BanksOperation operationEdit)
         {
-            obj.Edit(operationEdit);
+            await obj.Edit(operationEdit);
         }
 
-        public static void Delete(int id)
+        public static async Task Delete(int id)
         {
-            obj.Delete(id);
+            await obj.Delete(id);
         }
     }
 }

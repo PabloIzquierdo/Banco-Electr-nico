@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BusinessFlus;
@@ -23,12 +24,12 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Transaction transaction)
+        public async Task<ActionResult> Create(Transaction transaction)
         {
             try
             {
                 transaction.Date = DateTime.Now.ToString();
-                TransactionsBL.Create(transaction);
+                await TransactionsBL.Create(transaction);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

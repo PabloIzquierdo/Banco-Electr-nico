@@ -17,7 +17,7 @@ namespace DataFlus
             }
         }
 
-        public void Create(BanksOperation BankOperation)
+        public async Task Create(BanksOperation BankOperation)
         {
             using (var db = new FlusBankEntities())
             {
@@ -35,7 +35,7 @@ namespace DataFlus
                         id = Utilities.Utilities.generateIndex(id);
                     }
                     db.BanksOperations.Add(BankOperation);
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                 }
                 else
                     throw new Exception("La operación ya existe");
@@ -50,24 +50,24 @@ namespace DataFlus
             }
         }
 
-        public void Edit(BanksOperation operationEdit)
+        public async Task Edit(BanksOperation operationEdit)
         {
             using (var db = new FlusBankEntities())
             {
                 var oldOperation = db.BanksOperations.Where(op => op.Id == operationEdit.Id).FirstOrDefault();
 
                 oldOperation.Description = operationEdit.Description;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             using (var db = new FlusBankEntities())
             {
                 var removeOperation = db.BanksOperations.Where(op => op.Id == id).FirstOrDefault();
                 db.BanksOperations.Remove(removeOperation);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 
