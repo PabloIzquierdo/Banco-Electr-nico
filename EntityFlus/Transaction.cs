@@ -11,7 +11,7 @@ namespace EntityFlus
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Transaction
     {
         public int Id { get; set; }
@@ -22,6 +22,7 @@ namespace EntityFlus
         public double Amount { get; set; }
         public string Date { get; set; }
         public string IBAN { get; set; }
+        public string OperationName { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
         public virtual BanksOperation BanksOperation { get; set; }

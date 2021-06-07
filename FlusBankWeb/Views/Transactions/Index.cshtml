@@ -8,16 +8,10 @@
 <h2>Movimientos</h2>
 
 <p>
-    @Html.ActionLink("Crear transacción", "Create")
+    @Html.ActionLink("Crear transacción", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BankAccointId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BankOperationId)
-        </th>
         <th>
             <label>Cuenta destino</label>
         </th>
@@ -35,12 +29,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BankAccointId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BankOperationId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Addressee)
         </td>

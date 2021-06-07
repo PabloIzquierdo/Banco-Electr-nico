@@ -31,6 +31,7 @@ namespace DataFlus
                     }
                     id = Utilities.Utilities.generateIndex(id);
                 }
+
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
             }
@@ -40,7 +41,12 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
-                return db.Transactions.Where(tr => tr.Id == id).FirstOrDefault();
+                var dbPull =  db.Transactions.Where(tr => tr.Id == id).FirstOrDefault();
+                var nameOperation = db.BanksOperations.Where(op => op.Id == dbPull.BankOperationId).FirstOrDefault();
+                var codeAccount = db.BankAccounts.Where(op => op.Id == dbPull.BankAccointId).FirstOrDefault();
+                dbPull.OperationName = nameOperation.Name;
+                dbPull.IBAN = codeAccount.Code;
+                return dbPull;
             }
         }
 
