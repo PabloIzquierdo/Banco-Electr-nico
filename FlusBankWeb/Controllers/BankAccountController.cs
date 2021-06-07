@@ -39,7 +39,7 @@ namespace FlusBankWeb.Controllers
                 account.User = BankAccountBL.GetUser(account.User.DNI);
                 account.UserId = BankAccountBL.GetUser(account.User.DNI).Id;
                 account.TimeStamp = DateTime.Now;
-                account.Balance = 0;
+                account.Balance = 1000;
 
                 var comission = new Enums();
                 comission.SetComission(account.Type);

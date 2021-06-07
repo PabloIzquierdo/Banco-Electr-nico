@@ -92,7 +92,8 @@ namespace FlusBankWeb.Controllers
             catch
             {
                 ModelState.AddModelError("", "No se pudo eliminar este usuario");
-                return View();
+                var user = UsersBL.Details(id);
+                return View(user);
             }
         }
     }

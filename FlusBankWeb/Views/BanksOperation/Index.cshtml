@@ -6,47 +6,62 @@
 }
 @using FlusBankWeb.Utilities;
 
+@section styles{
+    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
 <h2>Operaciones bancarias</h2>
 
 <p>
     @Html.ActionLink("Crear operación", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <label>Operación</label>
-        </th>
-        <th>
-            <label>Descripción</label>
-        </th>
-        <th>
-            <label>Tipo</label>
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table" id="tableDemo">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @{
-                    var typeOperation = new Enums();
-                    typeOperation.SetOperationValue(item.Type);
-                }
-                <span>@typeOperation.GetOperation()</span>
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                <label>Operación</label>
+            </th>
+            <th>
+                <label>Descripción</label>
+            </th>
+            <th>
+                <label>Tipo</label>
+            </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @{
+                        var typeOperation = new Enums();
+                        typeOperation.SetOperationValue(item.Type);
+                    }
+                    <span>@typeOperation.GetOperation()</span>
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#tableDemo').DataTable();
+    </script>
+} 

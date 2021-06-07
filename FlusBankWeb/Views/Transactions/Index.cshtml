@@ -5,45 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles{
+    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
 <h2>Movimientos</h2>
 
 <p>
     @Html.ActionLink("Crear transacción", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <label>Cuenta destino</label>
-        </th>
-        <th>
-            <label>Concepto</label>
-        </th>
-        <th>
-            <label>Cantidad</label>
-        </th>
-        <th>
-            <label>Fecha</label>
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="tableDemo">
+    <thead>
+        <tr>
+            <th>
+                <label>Cuenta destino</label>
+            </th>
+            <th>
+                <label>Concepto</label>
+            </th>
+            <th>
+                <label>Cantidad</label>
+            </th>
+            <th>
+                <label>Fecha</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Addressee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id })
-    </tr>
-}
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Addressee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#tableDemo').DataTable();
+    </script>
+} 

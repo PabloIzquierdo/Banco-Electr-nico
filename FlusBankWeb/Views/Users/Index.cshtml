@@ -5,60 +5,74 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section styles{
+    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet"/>    
+}
+
 <h2>Usuarios</h2>
 
 <p>
     @Html.ActionLink("Registrar usuario", "Create", new { }, new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            <label>Email</label>
-        </th>
-        <th>
-            <label>Nº Móvil</label>
-        </th>
-        <th>
-            <label>DNI/Pasaporte</label>
-        </th>
-        <th>
-            <label>Nombre</label>
-        </th>
-        <th>
-            <label>Apellido</label>
-        </th>
-        <th>
-            <label>Rol</label>
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table" id="tableDemo">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rol)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                <label>Email</label>
+            </th>
+            <th>
+                <label>Nº Móvil</label>
+            </th>
+            <th>
+                <label>DNI/Pasaporte</label>
+            </th>
+            <th>
+                <label>Nombre</label>
+            </th>
+            <th>
+                <label>Apellido</label>
+            </th>
+            <th>
+                <label>Rol</label>
+            </th>
+            <th></th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rol)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#tableDemo').DataTable();
+    </script>
+} 
