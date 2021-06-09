@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDT.cs" />
     <Compile Include="BankAccountDT.cs" />
     <Compile Include="BanksOperationsDT.cs" />
     <Compile Include="FlusContext.Context.cs">

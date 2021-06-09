@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    body {
+        background-color: lightgrey;
+    }
+</style>
+<img src="~/Content/logo_large.png" width="200" class="center-block" />
+<hr />
+<h2 class="text-center">Inicio de sesión</h2>
+<hr />
+<div class="row text-center">
+    <form action="@Url.Content("~/Access/Login")" method="post">
+        <div class="form-group" style="display:flex; justify-content:center;">
+            <label class="control-label col-md-2">Documento de identidad</label>
+            @if (Session["DNI"] != null)
+            {
+                <input class="form-control" value="@Session["DNI"]" type="text" name="Dni" />
+            }
+            else
+            {
+                <input class="form-control" type="text" name="Dni" />
+            }
+        </div>
+        <div class="form-group" style="display:flex; justify-content:center">
+            <label class="control-label col-md-2">Contraseña</label>
+            <input class="form-control" type="password" name="Password" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Entrar" class="btn btn-success" />
+        </div>
+    </form>
+</div>

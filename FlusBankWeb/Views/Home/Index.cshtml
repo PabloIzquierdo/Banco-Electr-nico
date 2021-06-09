@@ -2,49 +2,56 @@
     ViewBag.Title = "Inicio";
 }
 
-<div class="row">
-    <h1 class="text-center">Consultas generales</h1>
+@if (Session["Rol"].ToString().Equals("1"))
+{
+    <div class="row">
+        <h1 class="text-center">Consultas generales</h1>
+        <hr />
+        <div class="col-md-6">
+            <h2>Registra un usuario</h2>
+            <p>
+                Para comenzar con Flus Bank se necesita un usuario.
+            </p>
+            @Html.ActionLink("Registrar usuario", "../Users/Create", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="col-md-6">
+            <h2>Crear cuenta bancaria</h2>
+            <p>Una vez registrado el cliente se le podrá crear una cuenta bancaria</p>
+            @Html.ActionLink("Crear cuenta", "../BankAccount/Create", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="col-md-6">
+            <h2>Operaciones disponibles</h2>
+            <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
+            @Html.ActionLink("Consultar/facilitar operación", "../BanksOperation/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="col-md-6">
+            <h2>Consulta de movimientos</h2>
+            <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
+            @Html.ActionLink("Ayuda sobre movimientos realizados", "../Transactions/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+    </div>
+
     <hr />
-    <div class="col-md-6">
-        <h2>Registra un usuario</h2>
-        <p>
-            Para comenzar con Flus Bank se necesita un usuario.
-        </p>
-        @Html.ActionLink("Registrar usuario", "../Users/Create", new { }, new { @class = "btn btn-s btn-primary" })
-    </div>
+    <div class="row">
+        <h1 class="text-center">Otras consultas</h1>
+        <hr />
+        <div class="col-md-6">
+            <h2>Consultar información del cliente</h2>
+            <p>Mostrará información sobre los clientes</p>
+            @Html.ActionLink("Ver información", "../Users/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
 
-    <div class="col-md-6">
-        <h2>Crear cuenta bancaria</h2>
-        <p>Una vez registrado el cliente se le podrá crear una cuenta bancaria</p>
-        @Html.ActionLink("Crear cuenta", "../BankAccount/Create", new { }, new { @class = "btn btn-s btn-primary" })
+        <div class="col-md-6">
+            <h2>Ver cuentas bancarias de los clientes</h2>
+            <p>Consultar datos de la cuenta bancaria de un cliente</p>
+            @Html.ActionLink("Consulta datos", "../BankAccount/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
     </div>
-
-    <div class="col-md-6">
-        <h2>Operaciones disponibles</h2>
-        <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
-        @Html.ActionLink("Consultar/facilitar operación", "../BanksOperation/Index", new { }, new { @class = "btn btn-s btn-primary" })
-    </div>
-
-    <div class="col-md-6">
-        <h2>Consulta de movimientos</h2>
-        <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
-        @Html.ActionLink("Ayuda sobre movimientos realizados", "../Transactions/Index", new { }, new { @class = "btn btn-s btn-primary" })
-    </div>
-</div>
-
-<hr />
-<div class="row">
-    <h1 class="text-center">Otras consultas</h1>
-    <hr />
-    <div class="col-md-6">
-        <h2>Consultar información del cliente</h2>
-        <p>Mostrará información sobre los clientes</p>
-        @Html.ActionLink("Ver información", "../Users/Index", new { }, new { @class = "btn btn-s btn-primary" })
-    </div>
-
-    <div class="col-md-6">
-        <h2>Ver cuentas bancarias de los clientes</h2>
-        <p>Consultar datos de la cuenta bancaria de un cliente</p>
-        @Html.ActionLink("Consulta datos", "../BankAccount/Index", new { }, new { @class = "btn btn-s btn-primary" })
-    </div>
-</div>
+}
+else
+{
+    <h2>Vista cliente</h2>
+}
