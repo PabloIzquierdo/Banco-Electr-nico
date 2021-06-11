@@ -71,5 +71,19 @@ namespace DataFlus
             }
         }
 
+        public bool Exist(int id)
+        {
+            using(var db = new FlusBankEntities())
+            {
+                var Operation = (from oper in db.BanksOperations
+                                where oper.Id == id
+                                select oper).FirstOrDefault();
+                if (Operation == null)
+                    return false;
+
+                return true;
+            }
+        }
+
     }
 }

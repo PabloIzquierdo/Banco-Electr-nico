@@ -1,65 +1,73 @@
-﻿@model EntityFlus.Transaction
+﻿@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        @model EntityFlus.Transaction
 
-@{
-    ViewBag.Title = "Detalles del movimiento";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Detalles del movimiento";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <h2>Detalles del movimiento</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Cuenta origen</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IBAN)
+                </dd>
+
+                <dt>
+                    <label>Movimiento</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.OperationName)
+                </dd>
+
+                <dt>
+                    <label>Cuenta destino</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Addressee)
+                </dd>
+
+                <dt>
+                    <label>Concepto</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    <label>Cantidad</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Amount)
+                </dd>
+
+                <dt>
+                    <label>Fecha</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Volver a la lista", "Index")
+        </p>
+    }
+    else
+    {
+        <h2>Vista cliente</h2>
+    }
 }
-
-<h2>Detalles del movimiento</h2>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Cuenta origen</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IBAN)
-        </dd>
-
-        <dt>
-            <label>Movimiento</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OperationName)
-        </dd>
-
-        <dt>
-            <label>Cuenta destino</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Addressee)
-        </dd>
-
-        <dt>
-            <label>Concepto</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            <label>Cantidad</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-        <dt>
-            <label>Fecha</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Volver a la lista", "Index")
-</p>

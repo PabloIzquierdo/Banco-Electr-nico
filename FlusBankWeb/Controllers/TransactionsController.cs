@@ -40,9 +40,12 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View(TransactionsBL.Details(id));
+            if (id == null || !TransactionsBL.Exists(id.Value))
+                return RedirectToAction("Index");
+
+            return View(TransactionsBL.Details(id.Value));
         }
     }
 }

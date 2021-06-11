@@ -1,66 +1,74 @@
-﻿@model IEnumerable<EntityFlus.Transaction>
+﻿@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        @model IEnumerable<EntityFlus.Transaction>
 
-@{
-    ViewBag.Title = "Movimientos";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+        ViewBag.Title = "Movimientos";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 
-@section styles{
-    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
-}
-
-<h2>Movimientos</h2>
-
-<p>
-    @Html.ActionLink("Crear transacción", "Create", new { }, new { @class = "btn btn-primary" })
-</p>
-<table class="table" id="tableDemo">
-    <thead>
-        <tr>
-            <th>
-                <label>Cuenta destino</label>
-            </th>
-            <th>
-                <label>Concepto</label>
-            </th>
-            <th>
-                <label>Cantidad</label>
-            </th>
-            <th>
-                <label>Fecha</label>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Addressee)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.Id })
-            </tr>
+        @section styles{
+            <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
         }
-    </tbody>
 
-</table>
+        <h2>Movimientos</h2>
+
+        <p>
+            @Html.ActionLink("Crear transacción", "Create", new { }, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table" id="tableDemo">
+            <thead>
+                <tr>
+                    <th>
+                        <label>Cuenta destino</label>
+                    </th>
+                    <th>
+                        <label>Concepto</label>
+                    </th>
+                    <th>
+                        <label>Cantidad</label>
+                    </th>
+                    <th>
+                        <label>Fecha</label>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Addressee)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+                    </tr>
+                }
+            </tbody>
+
+        </table>
 
 
-@section scripts{
-    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script>
-        $('#tableDemo').DataTable();
-    </script>
-} 
+        @section scripts{
+            <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+            <script>
+                $('#tableDemo').DataTable();
+            </script>
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Error.cshtml";
+    }
+}

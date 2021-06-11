@@ -63,7 +63,7 @@ namespace DataFlus
 
         public bool RegistryIdentity(string identity)
         {
-            using(var db = new FlusBankEntities())
+            using (var db = new FlusBankEntities())
             {
                 var query = from user in db.Users
                             where user.DNI == identity
@@ -88,6 +88,21 @@ namespace DataFlus
                     return false;
                 else
                     return true;
+            }
+        }
+
+        public bool Exists(int id)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                var user = (from usr in db.Users
+                            where usr.Id == id
+                            select usr).FirstOrDefault();
+
+                if (user == null)
+                    return false;
+
+                return true;
             }
         }
     }

@@ -56,7 +56,10 @@ namespace BusinessFlus
             await obj.Delete(id);
         }
 
-
+        public static bool Exists(int id)
+        {
+            return obj.Exists(id);
+        }
 
     }
 }

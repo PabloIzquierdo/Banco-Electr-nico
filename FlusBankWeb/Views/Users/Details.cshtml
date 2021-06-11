@@ -1,74 +1,82 @@
-﻿@model EntityFlus.User
+﻿@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        @model EntityFlus.User
 
-@{
-    ViewBag.Title = "Detalles";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Detalles";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <h2>Detalles</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Nombre</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    <label>Apellidos</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Surname)
+                </dd>
+                <dt>
+                    <label>Email</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    <label>Número teléfono</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+
+                <dt>
+                    <label>Nombre de usuario</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+
+                <dt>
+                    <label>DNI</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DNI)
+                </dd>
+
+
+                <dt>
+                    <label>Rol</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Rol)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </p>
+    }
+    else
+    {
+        <h2>Vista cliente</h2>
+    }
 }
-
-<h2>Detalles</h2>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Nombre</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            <label>Apellidos</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-        <dt>
-            <label>Email</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            <label>Número teléfono</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-        <dt>
-            <label>Nombre de usuario</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-        <dt>
-            <label>DNI</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DNI)
-        </dd>
-
-
-        <dt>
-            <label>Rol</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rol)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver a la lista", "Index")
-</p>

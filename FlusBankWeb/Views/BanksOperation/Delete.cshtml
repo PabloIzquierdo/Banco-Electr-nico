@@ -1,55 +1,64 @@
-﻿@model EntityFlus.BanksOperation
-
-@{
-    ViewBag.Title = "Eliminar operación";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@using FlusBankWeb.Utilities;
-
-<h2>Elimnar operación</h2>
-
-<h3>¿Estás seguro de que quieres eliminar l asiguiente operación?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Operación</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            <label>Descripción</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            <label>Tipo</label>
-        </dt>
-
-        <dd>
-            @{
-                var typeOperation = new Enums();
-                typeOperation.SetOperationValue(Model.Type);
-            }
-            <span>@typeOperation.GetOperation()</span>
-        </dd>
-
-
-    </dl>
-
-    @using (Html.BeginForm())
+﻿@using FlusBankWeb.Utilities;
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
     {
-        @Html.AntiForgeryToken()
+        @model EntityFlus.BanksOperation
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-            @Html.ActionLink("Volver a la lista", "Index")
+        ViewBag.Title = "Eliminar operación";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <h2>Elimnar operación</h2>
+
+        <h3>¿Estás seguro de que quieres eliminar l asiguiente operación?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Operación</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    <label>Descripción</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    <label>Tipo</label>
+                </dt>
+
+                <dd>
+                    @{
+                        var typeOperation = new Enums();
+                        typeOperation.SetOperationValue(Model.Type);
+                    }
+                    <span>@typeOperation.GetOperation()</span>
+                </dd>
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                    @Html.ActionLink("Volver a la lista", "Index")
+                </div>
+            }
         </div>
     }
-</div>
+    else
+    {
+        Layout = "~/Views/Shared/_Error.cshtml";
+    }
+
+}

@@ -4,82 +4,178 @@
     ViewBag.Title = "Cuentas bancarias";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 @using FlusBankWeb.Utilities;
+@using BusinessFlus;
+@using EntityFlus;
+
 
 @section styles{
     <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
 }
 
-<h2>Cuentas bancarias</h2>
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        <h2>Cuentas bancarias</h2>
+        <p>
+            @Html.ActionLink("Crear cuenta", "Create", new { }, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table" id="tableDemo">
+            <thead>
+                <tr>
+                    <th>
+                        <label>Moneda</label>
+                    </th>
+                    <th>
+                        <label>Fecha de creación</label>
+                    </th>
+                    <th>
+                        <label>Tipo</label>
+                    </th>
+                    <th>
+                        <label>Saldo</label>
+                    </th>
+                    <th>
+                        <label>Comisión</label>
+                    </th>
+                    <th>
+                        <label>IBAN</label>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
 
-<p>
-    @Html.ActionLink("Crear cuenta", "Create", new { }, new { @class = "btn btn-primary" })
-</p>
-<table class="table" id="tableDemo">
-    <thead>
-        <tr>
-            <th>
-                <label>Moneda</label>
-            </th>
-            <th>
-                <label>Fecha de creación</label>
-            </th>
-            <th>
-                <label>Tipo</label>
-            </th>
-            <th>
-                <label>Saldo</label>
-            </th>
-            <th>
-                <label>Comisión</label>
-            </th>
-            <th>
-                <label>IBAN</label>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                var currencyType = new Enums();
+                                currencyType.SetCurrency(item.CurrencyId);
+                            }
+                            <span>@currencyType.GetCurrency()</span>
+                        </td>
+                        <td>
+                            @item.TimeStamp.ToShortDateString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Balance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Commission)<span>/Año</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
 
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @{
-                        var currencyType = new Enums();
-                        currencyType.SetCurrency(item.CurrencyId);
-                    }
-                    <span>@currencyType.GetCurrency()</span>
-                </td>
-                <td>
-                    @item.TimeStamp.ToShortDateString()
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Balance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Commission)<span>/Año</span>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-                </td>
-            </tr>
+
+
+            </tbody>
+
+        </table>
+        @section scripts{
+            <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+            <script>
+                $('#tableDemo').DataTable();
+            </script>
         }
-    </tbody>
+    }
+    else
+    {
+        <h2>Mis cuentas</h2>
+        SentencesBL obj = new SentencesBL();
+        var accounts = obj.GetBanksUserAccounts(Session["DNI"].ToString()).ToArray();
+        <div class="container">
+            @foreach (BankAccount account in accounts[0])
+            {
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        @{
+                            var code = account.Code;
+                        }
+                        Cuenta *@code.Substring(code.Length - 4, 4)
+                    </div>
+                    <div class="col-4">
+                        ·@code.Substring(code.Length - 4, 4)
+                    </div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        @{
+                            var currencyType = new Enums();
+                            currencyType.SetCurrency(account.CurrencyId);
+                        }
+                        @account.Balance @currencyType.GetCurrencySymbol()
+                        Saldo disponible
+                    </div>
+                    <div class="col-4">
+                        @{
+                            currencyType.SetCurrency(account.CurrencyId);
+                        }
+                        @account.Balance @currencyType.GetCurrencySymbol()
+                        Saldo actual
+                    </div>
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-4">
+                        @Html.ActionLink("Mas información", "Details", new { id = account.Id })
+                    </div>
+                </div>
+            }
+        </div>
 
-</table>
+        <div class="container">
+            @Html.ActionLink("Buscar movimientos", "Searcher", "TransactionsSearched")
+            <a>Transferenicas/Traspasos</a><a>Mostrar más</a>
+        </div>
 
-@section scripts{
-    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script>
-        $('#tableDemo').DataTable();
-    </script>
-} 
+
+        <h4><b>MOVIMIENTOS</b></h4>
+        <div class="container">
+            @foreach (BankAccount account in accounts[0])
+            {
+                <hr/>
+                var code = account.Code;
+                <h4>Cuenta *@code.Substring(code.Length - 4, 4)</h4>
+                var transactions = obj.GetAccountTransactions(account.Code);
+                foreach (Transaction transaction in transactions)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <b><i>@transaction.Date</i></b>
+                            <p><b>@transaction.Description</b></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            @if (transaction.Addressee.Contains(account.Code))
+                            {
+                                <h4>+@transaction.Amount</h4>
+                            }
+                            else
+                            {
+                                <h4>-@transaction.Amount</h4>
+                            }
+                            <p>@account.Balance</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+}
+
+

@@ -41,9 +41,13 @@ namespace FlusBankWeb.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            BanksOperation operation = BanksOperationsBL.Details(id);
+            if (id == null || !BanksOperationsBL.Exist(id.Value))
+            {
+                return RedirectToAction("Index");
+            }
+            BanksOperation operation = BanksOperationsBL.Details(id.Value);
             return View(operation);
         }
 
@@ -63,18 +67,21 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            BanksOperation operation = BanksOperationsBL.Details(id);
+            if (id == null || !BanksOperationsBL.Exist(id.Value))
+            {
+                return RedirectToAction("Index");
+            }
+            BanksOperation operation = BanksOperationsBL.Details(id.Value);
             return View(operation);
         }
 
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (id == null || !BanksOperationsBL.Exist(id.Value))
             {
-                ModelState.AddModelError("", "Se necesita seleccionar una operación");
                 return RedirectToAction("Index");
             }
             BanksOperation operation = BanksOperationsBL.Details(id.Value);

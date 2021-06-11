@@ -1,79 +1,91 @@
-﻿@model EntityFlus.BankAccount
+﻿@using FlusBankWeb.Utilities;
 
-@{
-    ViewBag.Title = "Eliminar cuenta";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@using FlusBankWeb.Utilities;
-
-<h2>Eliminar cuenta</h2>
-
-<h3>¿Seguro que quieres eliminar la cuenta?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-
-        <dt>
-            <label>Moneda</label>
-        </dt>
-
-        <dd>
-            @{
-                var currencyType = new Enums();
-                currencyType.SetCurrency(Model.CurrencyId);
-            }
-            <span>@currencyType.GetCurrency()</span>
-        </dd>
-
-        <dt>
-            <label>Fecha de creación</label>
-        </dt>
-
-        <dd>
-            @Model.TimeStamp.ToShortDateString()
-        </dd>
-
-        <dt>
-            <label>Tipo de cuenta</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            <label>Saldo</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Balance)
-        </dd>
-
-        <dt>
-            <label>Comisión anual</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Commission)
-        </dd>
-
-        <dt>
-            <label>Número de cuenta</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
     {
-        @Html.AntiForgeryToken()
+        @model EntityFlus.BankAccount
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-            @Html.ActionLink("Volver a la lista", "Index")
+
+        ViewBag.Title = "Eliminar cuenta";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+        <h2>Eliminar cuenta</h2>
+
+        <h3>¿Seguro que quieres eliminar la cuenta?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    <label>Moneda</label>
+                </dt>
+
+                <dd>
+                    @{
+                        var currencyType = new Enums();
+                        currencyType.SetCurrency(Model.CurrencyId);
+                    }
+                    <span>@currencyType.GetCurrency()</span>
+                </dd>
+
+                <dt>
+                    <label>Fecha de creación</label>
+                </dt>
+
+                <dd>
+                    @Model.TimeStamp.ToShortDateString()
+                </dd>
+
+                <dt>
+                    <label>Tipo de cuenta</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+
+                <dt>
+                    <label>Saldo</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Balance)
+                </dd>
+
+                <dt>
+                    <label>Comisión anual</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission)
+                </dd>
+
+                <dt>
+                    <label>Número de cuenta</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Code)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                    @Html.ActionLink("Volver a la lista", "Index")
+                </div>
+            }
         </div>
     }
-</div>
+    else
+    {
+        Layout = "~/Views/Shared/_Error.cshtml";
+
+    }
+}

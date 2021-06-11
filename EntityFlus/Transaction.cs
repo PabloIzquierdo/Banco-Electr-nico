@@ -23,6 +23,7 @@ namespace EntityFlus
         public string Date { get; set; }
         public string IBAN { get; set; }
         public string OperationName { get; set; }
+        public string RootAccount { get; set; }
 
         public virtual BankAccount BankAccount { get; set; }
         public virtual BanksOperation BanksOperation { get; set; }

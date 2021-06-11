@@ -45,7 +45,9 @@
     <Compile Include="BankAccountBL.cs" />
     <Compile Include="BanksOperationsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SentencesBL.cs" />
     <Compile Include="TransactionsBL.cs" />
+    <Compile Include="TransactionsSearchedBL.cs" />
     <Compile Include="UsersBL.cs" />
   </ItemGroup>
   <ItemGroup>

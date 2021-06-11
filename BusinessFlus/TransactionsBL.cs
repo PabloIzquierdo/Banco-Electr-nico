@@ -18,21 +18,18 @@ namespace BusinessFlus
 
         public static async Task Create(Transaction transaction)
         {
-            try
-            {
-                int idAccount = obj.ComprobateAccount(transaction.Addressee);
-                transaction.BankAccointId = idAccount;
-                await obj.Create(transaction);
-            }
-            catch
-            {
-                throw new Exception("La cuenta destino no está registrada");
-            }
+            obj.ComprobateAccountWithAddress(transaction.Addressee);
+            await obj.Create(transaction);
         }
 
         public static Transaction Details(int id)
         {
             return obj.Details(id);
         }
+        public static bool Exists(int id)
+        {
+            return obj.Exists(id);
+        }
+
     }
 }

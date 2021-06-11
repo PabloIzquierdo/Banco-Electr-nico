@@ -1,97 +1,109 @@
-﻿@model EntityFlus.User
-
-@{
-    ViewBag.Title = "Registrar usuario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Registrar usuario</h2>
-
-
-@using (Html.BeginForm())
+﻿
+@if (Session["User"] != null)
 {
-    @Html.AntiForgeryToken()
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        @model EntityFlus.User
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2">Email</label>
-            <div class="col-md-10">
-                <input type="text" name="Email" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        ViewBag.Title = "Registrar usuario";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <h2>Registrar usuario</h2>
+
+
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email</label>
+                    <div class="col-md-10">
+                        <input type="text" name="Email" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nº Móvil</label>
+                    <div class="col-md-10">
+                        <input type="text" name="PhoneNumber" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">DNI/Pasaporte</label>
+                    <div class="col-md-10">
+                        <input type="text" name="DNI" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.DNI, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nombre</label>
+                    <div class="col-md-10">
+                        <input type="text" name="Name" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Apellidos</label>
+                    <div class="col-md-10">
+                        <input type="text" name="Surname" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Administrador</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="Rol" id="Rol">
+                            <option value="0">Cliente</option>
+                            <option value="1">Administrador</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Rol, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Contraseña</label>
+                    <div class="col-md-10">
+                        <input type="password" name="Password" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Repetir contraseña</label>
+                    <div class="col-md-10">
+                        <input type="password" name="PasswordConfirm" class="form-control" required />
+                        @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Registrar" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
+        }
+
+        <div>
+            @Html.ActionLink("Volver a la lista", "Index")
         </div>
 
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Nº Móvil</label>
-            <div class="col-md-10">
-                <input type="text" name="PhoneNumber" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">DNI/Pasaporte</label>
-            <div class="col-md-10">
-                <input type="text" name="DNI" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.DNI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Nombre</label>
-            <div class="col-md-10">
-                <input type="text" name="Name" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Apellidos</label>
-            <div class="col-md-10">
-                <input type="text" name="Surname" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Administrador</label>
-            <div class="col-md-10">
-                <input type="checkbox" name="Rol" id="Rol" />
-                @Html.ValidationMessageFor(model => model.Rol, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Contraseña</label>
-            <div class="col-md-10">
-                <input type="password" name="Password" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Repetir contraseña</label>
-            <div class="col-md-10">
-                <input type="password" name="PasswordConfirm" class="form-control" required />
-                @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Volver a la lista", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Error.cshtml";
+    }
 }

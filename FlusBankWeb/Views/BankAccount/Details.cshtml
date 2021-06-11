@@ -1,71 +1,139 @@
 ﻿@model EntityFlus.BankAccount
-
-@{
-    ViewBag.Title = "Detalles cuenta bancaria";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@using BusinessFlus;
 @using FlusBankWeb.Utilities;
 
-<h2>Detalles cuenta bancaria</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Moneda</label>
-        </dt>
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
 
-        <dd>
-            @{
-                var currencyType = new Enums();
-                currencyType.SetCurrency(Model.CurrencyId);
-            }
-            <span>@currencyType.GetCurrency()</span>
-        </dd>
+        ViewBag.Title = "Detalles cuenta bancaria";
+        Layout = "~/Views/Shared/_Layout.cshtml";
 
-        <dt>
-            <label>Fecha de creación</label>
-        </dt>
+        <h2>Detalles cuenta bancaria</h2>
 
-        <dd>
-            @Model.TimeStamp.ToShortDateString()
-        </dd>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Moneda</label>
+                </dt>
 
-        <dt>
-            <label>Tipo de cuenta</label>
-        </dt>
+                <dd>
+                    @{
+                        var currencyType = new Enums();
+                        currencyType.SetCurrency(Model.CurrencyId);
+                    }
+                    <span>@currencyType.GetCurrency()</span>
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
+                <dt>
+                    <label>Fecha de creación</label>
+                </dt>
 
-        <dt>
-            <label>Saldo</label>
-        </dt>
+                <dd>
+                    @Model.TimeStamp.ToShortDateString()
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Balance)
-        </dd>
+                <dt>
+                    <label>Tipo de cuenta</label>
+                </dt>
 
-        <dt>
-            <label>Comisión anual</label>
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Commission)
-        </dd>
+                <dt>
+                    <label>Saldo</label>
+                </dt>
 
-        <dt>
-            <label>IBAN</label>
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Balance)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+                <dt>
+                    <label>Comisión anual</label>
+                </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver a la lista", "Index")
-</p>
+                <dd>
+                    @Html.DisplayFor(model => model.Commission)
+                </dd>
+
+                <dt>
+                    <label>IBAN</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Code)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </p>
+    }
+    else
+    {
+        <h2 class="text-center">Más información</h2>
+
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-4">
+                    Alias
+                    *@Model.Code.Substring(Model.Code.Length - 4, 4)
+                </div>
+                <div class="col-4">
+                    IBAN
+                    @Model.Code
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="col-4">
+                    @{
+                        BusinessFlus.SentencesBL obj = new BusinessFlus.SentencesBL();
+                        var owner = obj.GetUser(Model.UserId);
+                    }
+                    <h4>INTERVINIENTES</h4>
+                    <div class="col-4">
+                        <b>@owner.Name @owner.Surname</b>
+                        <p>Titular</p>
+                    </div>
+                    <div class="col-4">
+                        <b>@owner.UserName</b>
+                        <p>Alias</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="col">
+                    <h4>CONDICIONES</h4>
+                    <h5>Categoría</h5>
+                    <p>Cuenta</p>
+                    <h5>Descripción</h5>
+                    <p>Enums-> tipo cuenta</p>
+                    <h4>Fecha de apertura</h4>
+                    @Model.TimeStamp.ToString("dddd, dd MMMM yyyy")
+
+                    <h4>COMISIÓN AL DESCUBIERTO</h4>
+                    <p>Valor de la comisión 45tanto por mil</p>
+
+                    @{
+                        var currencyType = new Enums();
+                        currencyType.SetCurrency(Model.CurrencyId);
+                    }
+
+                    <h4>COMISIÓN DE ADMINISTRACIÓN</h4>
+                    <p>Valor de la comisión 0,6 @currencyType.GetCurrencySymbol()</p>
+
+                    <h4>COMISIÓN DE MANTENIMIENTO</h4>
+                    <p> Valor de la comisión @Model.Commission @currencyType.GetCurrencySymbol()</p>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+

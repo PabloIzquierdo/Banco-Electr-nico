@@ -51,5 +51,9 @@ namespace BusinessFlus
             return obj.ComprobateIdentify(dni);
         }
 
+        public static bool ExistsAccount(int id)
+        {
+            return obj.ExistsAccount(id);
+        }
     }
 }

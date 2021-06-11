@@ -136,6 +136,34 @@ namespace FlusBankWeb.Utilities
 
             }
         }
+        public string GetCurrencySymbol()
+        {
+            switch (currency)
+            {
+                case Currency.USD:
+                    return "$";
+
+                case Currency.JPY:
+                    return "¥";
+
+                case Currency.GBP:
+                    return "£";
+
+                case Currency.RUB:
+                    return "₽";
+
+                case Currency.MXN:
+                    return "$";
+
+                case Currency.EUR:
+                    return "€";
+
+                default:
+                    return null;
+
+            }
+        }
+
         public void SetCurrency(int id)
         {
             switch (id)

@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error - Flus Bank</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div>
+        <h2 class="text-center"><span>Error </span><span class="text-danger">404 Not Found</span></h2>
+        <p class="text-center">@Html.ActionLink("Volver al inicio", "../Home/Index")</p>
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+@{
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+}

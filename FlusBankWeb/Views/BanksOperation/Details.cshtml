@@ -1,48 +1,57 @@
-﻿@model EntityFlus.BanksOperation
+﻿@using FlusBankWeb.Utilities;
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("1"))
+    {
+        @model EntityFlus.BanksOperation
 
-@{
-    ViewBag.Title = "Detalles";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Detalles";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+        <h2>Detalles de la operación</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Operación</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    <label>Descripción</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    <label>Tipo</label>
+                </dt>
+
+                <dd>
+                    @{
+                        var typeOperation = new Enums();
+                        typeOperation.SetOperationValue(Model.Type);
+                    }
+                    <span>@typeOperation.GetOperation()</span>
+                </dd>
+
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </p>
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Error.cshtml";
+    }
 }
-@using FlusBankWeb.Utilities;
-
-<h2>Detalles de la operación</h2>
-
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label>Operación</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            <label>Descripción</label>
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            <label>Tipo</label>
-        </dt>
-
-        <dd>
-            @{
-                var typeOperation = new Enums();
-                typeOperation.SetOperationValue(Model.Type);
-            }
-            <span>@typeOperation.GetOperation()</span>
-        </dd>
-
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver a la lista", "Index")
-</p>

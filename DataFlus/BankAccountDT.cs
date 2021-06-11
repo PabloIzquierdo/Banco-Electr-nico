@@ -13,7 +13,7 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
-                
+
                 return db.BankAccounts.ToList();
             }
         }
@@ -22,6 +22,12 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
+                var userPropierty = (from user in db.Users
+                                     where user.DNI == account.User.DNI
+                                     select user).FirstOrDefault();
+
+                userPropierty.BankAccounts.Add(account);
+                account.User = null;
                 db.BankAccounts.Add(account);
                 await db.SaveChangesAsync();
 
@@ -88,5 +94,16 @@ namespace DataFlus
             }
         }
 
+        public bool ExistsAccount(int id)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                var account = db.Users.Where(acc => acc.Id == id).FirstOrDefault();
+                if (account == null)
+                    return false;
+
+                return true;
+            }
+        }
     }
 }

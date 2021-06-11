@@ -39,9 +39,14 @@ namespace FlusBankWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            User editUser = UsersBL.Details(id);
+            if (id == null || !UsersBL.Exists(id.Value))
+            {
+                return RedirectToAction("Index");
+            }
+
+            User editUser = UsersBL.Details(id.Value);
             return View(editUser);
         }
 
@@ -64,19 +69,24 @@ namespace FlusBankWeb.Controllers
 
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View(UsersBL.Details(id));
+            if (id == null || !UsersBL.Exists(id.Value))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(UsersBL.Details(id.Value));
         }
 
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (id == null || !UsersBL.Exists(id.Value))
             {
-                ModelState.AddModelError("", "Se necesita seleccionar un usuario");
                 return RedirectToAction("Index");
             }
+
             var user = UsersBL.Details(id.Value);
             return View(user);
         }
