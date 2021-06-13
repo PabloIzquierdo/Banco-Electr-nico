@@ -28,6 +28,9 @@ namespace FlusBankWeb.Controllers
         {
             try
             {
+                transaction.RootAccount = transaction.RootAccount.Trim();
+                transaction.Addressee = transaction.Addressee.Trim();
+                transaction.Description = transaction.Description.Trim();
                 transaction.Date = DateTime.Now.ToString("yyyy/MM/dd");
                 await TransactionsBL.Create(transaction);
                 return RedirectToAction("Index");

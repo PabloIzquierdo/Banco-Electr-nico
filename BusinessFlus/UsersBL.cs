@@ -23,20 +23,25 @@ namespace BusinessFlus
             if (obj.RegistryMail(user.Email))
                 throw new Exception("El correo electrónico ya esta registrado");
             if (Utilities.ValidateEmail(user.Email))
-                user.Email = user.Email.ToLower();
+                user.Email = user.Email.ToLower().Trim();
 
-            user.Name = user.Name.Substring(0, 1).ToUpper() + user.Name.Substring(1, user.Name.Length - 1).ToLower();
-            user.Surname = user.Surname.Substring(0, 1).ToUpper() + user.Surname.Substring(1, user.Surname.Length - 1).ToLower();
-            user.UserName = user.Name.Substring(0, 1).ToUpper() + user.Surname.Substring(0, 1).ToUpper();
-
-            if (obj.RegistryIdentity(user.DNI))
+            if(obj.RegistryPhone(user.PhoneNumber.Trim()))
                 throw new Exception("El DNI/Pasaporte ya esta registrado");
+            user.PhoneNumber = user.PhoneNumber.Trim();
+
+            if (obj.RegistryIdentity(user.DNI.Trim()))
+                throw new Exception("El DNI/Pasaporte ya esta registrado");
+            user.DNI = user.DNI.Trim();
+
+            user.Name = user.Name.Substring(0, 1).ToUpper() + user.Name.Substring(1, user.Name.Length - 1).ToLower().Trim();
+            user.Surname = user.Surname.Substring(0, 1).ToUpper() + user.Surname.Substring(1, user.Surname.Length - 1).ToLower().Trim();
+            user.UserName = user.Name.Substring(0, 1).ToUpper() + user.Surname.Substring(0, 1).ToUpper();
 
             user.EmailConfirmed = false;
             user.PhoneNumberConfirmed = false;
 
-            if (Utilities.ValidatePassword(user.Password, user.PasswordConfirm))
-                user.PasswordHash = Utilities.setKeySHA1(user.Password);
+            if (Utilities.ValidatePassword(user.Password.Trim(), user.PasswordConfirm.Trim()))
+                user.PasswordHash = Utilities.setKeySHA1(user.Password.Trim());
 
             await obj.Create(user);
         }

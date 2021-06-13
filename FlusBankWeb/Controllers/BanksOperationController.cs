@@ -29,6 +29,8 @@ namespace FlusBankWeb.Controllers
             try
             {
                 BankOperation.Operation = BankOperation.Id+1;
+                BankOperation.Name = BankOperation.Name.Trim();
+                BankOperation.Description = BankOperation.Description.Trim();
                 await BanksOperationsBL.Create(BankOperation);
                 return RedirectToAction("Index");
             }
@@ -56,6 +58,7 @@ namespace FlusBankWeb.Controllers
         {
             try
             {
+                editOperation.Description = editOperation.Description.Trim();
                 await BanksOperationsBL.Edit(editOperation);
                 return RedirectToAction("Index");
             }

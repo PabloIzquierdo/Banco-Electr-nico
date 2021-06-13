@@ -41,9 +41,9 @@ namespace DataFlus
                 var editUser = db.Users.Where(us => us.Id == user.Id).FirstOrDefault();
 
                 if (!Utilities.Utilities.IsNullOrEmpty(user.Email))
-                    editUser.Email = user.Email;
+                    editUser.Email = user.Email.Trim();
                 if (!Utilities.Utilities.IsNullOrEmpty(user.PhoneNumber))
-                    editUser.PhoneNumber = user.PhoneNumber;
+                    editUser.PhoneNumber = user.PhoneNumber.Trim();
                 editUser.Password = editUser.PasswordHash;
                 editUser.PasswordConfirm = editUser.PasswordHash;
 
@@ -58,6 +58,21 @@ namespace DataFlus
                 var deleteUser = db.Users.Where(us => us.Id == id).FirstOrDefault();
                 db.Users.Remove(deleteUser);
                 await db.SaveChangesAsync();
+            }
+        }
+
+        public bool RegistryPhone(string phone)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                var query = from user in db.Users
+                            where user.PhoneNumber == phone
+                            select user;
+
+                if (query.FirstOrDefault() == null)
+                    return false;
+                else
+                    return true;
             }
         }
 

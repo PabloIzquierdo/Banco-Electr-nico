@@ -30,7 +30,7 @@ namespace FlusBankWeb.Controllers
         {
             try
             {
-                if (!BankAccountBL.ComprobateIdentify(account.User.DNI))
+                if (!BankAccountBL.ComprobateIdentify(account.User.DNI.Trim()))
                 {
                     ModelState.AddModelError("", "El DNI/Pasaporte no está registrado");
                     return View(account);

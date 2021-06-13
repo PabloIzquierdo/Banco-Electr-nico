@@ -19,11 +19,8 @@ namespace FlusBankWeb.Utilities
         public enum Currency
         {
             USD = 1, //Dollar
-            JPY = 2, //Yen Japanese
-            GBP = 3, //Pound sterling
-            RUB = 4, //Russian ruble
-            MXN = 5, //Mexican peso
-            EUR = 6, //Euro
+            GBP = 2, //Pound sterling
+            EUR = 3, //Euro
         }
 
         public enum Comission
@@ -114,19 +111,9 @@ namespace FlusBankWeb.Utilities
             switch (currency)
             {
                 case Currency.USD:
-                    return "USD";
-
-                case Currency.JPY:
-                    return "JPY";
 
                 case Currency.GBP:
                     return "GBP";
-
-                case Currency.RUB:
-                    return "RUB";
-
-                case Currency.MXN:
-                    return "MXN";
 
                 case Currency.EUR:
                     return "EUR";
@@ -143,17 +130,8 @@ namespace FlusBankWeb.Utilities
                 case Currency.USD:
                     return "$";
 
-                case Currency.JPY:
-                    return "¥";
-
                 case Currency.GBP:
                     return "£";
-
-                case Currency.RUB:
-                    return "₽";
-
-                case Currency.MXN:
-                    return "$";
 
                 case Currency.EUR:
                     return "€";
@@ -172,22 +150,9 @@ namespace FlusBankWeb.Utilities
                     currency = Currency.USD;
                     break;
 
-                case 2:
-                    currency = Currency.JPY;
-                    break;
-
                 case 3:
                     currency = Currency.GBP;
                     break;
-
-                case 4:
-                    currency = Currency.RUB;
-                    break;
-
-                case 5:
-                    currency = Currency.MXN;
-                    break;
-
                 case 6:
                     currency = Currency.EUR;
                     break;
