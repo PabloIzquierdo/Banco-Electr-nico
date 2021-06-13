@@ -31,5 +31,10 @@ namespace BusinessFlus
         {
             return obj.GetAccountTransactions(code);
         }
+
+        public BankAccount GetAccount(int id)
+        {
+            return obj.GetAccount(id);
+        }
     }
 }

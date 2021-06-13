@@ -53,5 +53,15 @@ namespace DataFlus.Utilities
                         select transactions).ToList();
             }
         }
+
+        public BankAccount GetAccount(int id)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                return (from account in db.BankAccounts
+                          where account.Id == id
+                          select account).FirstOrDefault();
+            }
+        }
     }
 }

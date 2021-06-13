@@ -88,10 +88,26 @@ namespace DataFlus.Utilities
 
         public static bool IsNullOrEmpty(string cadena)
         {
+            cadena = cadena != null ? cadena.Trim() : cadena;
             if (cadena == null || cadena == "")
                 return true;
 
             return false;
+        }
+        public static bool ValidateDates(string InitialDate, string EndDate)
+        {
+            if (InitialDate.CompareTo(EndDate) == 1)
+                throw new Exception("La fecha inicial debe ser menor o igual que la fecha final");
+
+            return true;
+        }
+
+        public static bool ValidateAmount(int InitialAmount, int EndAmount)
+        {
+            if (InitialAmount > EndAmount)
+                throw new Exception("El importe mínimo no puede ser mayor que el importe máximo");
+
+            return true;
         }
     }
 }

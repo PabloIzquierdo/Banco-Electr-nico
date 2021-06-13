@@ -131,7 +131,7 @@
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-4">
-                        @Html.ActionLink("Mas información", "Details", new { id = account.Id })
+                        <a href="@Url.Action("Details", "BankAccount", new { id = account.Id })">Mas información</a>
                     </div>
                 </div>
             }
@@ -147,7 +147,7 @@
         <div class="container">
             @foreach (BankAccount account in accounts[0])
             {
-                <hr/>
+                <hr />
                 var code = account.Code;
                 <h4>Cuenta *@code.Substring(code.Length - 4, 4)</h4>
                 var transactions = obj.GetAccountTransactions(account.Code);
@@ -161,13 +161,17 @@
                     </div>
                     <div class="row">
                         <div class="col">
+                            @{
+                                var currencyType = new Enums();
+                                currencyType.SetCurrency(account.CurrencyId);
+                            }
                             @if (transaction.Addressee.Contains(account.Code))
                             {
-                                <h4>+@transaction.Amount</h4>
+                                <h4>+@transaction.Amount@currencyType.GetCurrencySymbol()</h4>
                             }
                             else
                             {
-                                <h4>-@transaction.Amount</h4>
+                                <h4>-@transaction.Amount@currencyType.GetCurrencySymbol()</h4>
                             }
                             <p>@account.Balance</p>
                         </div>

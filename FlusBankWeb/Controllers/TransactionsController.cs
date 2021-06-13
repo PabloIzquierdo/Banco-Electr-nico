@@ -28,7 +28,7 @@ namespace FlusBankWeb.Controllers
         {
             try
             {
-                transaction.Date = DateTime.Now.ToString();
+                transaction.Date = DateTime.Now.ToString("yyyy/MM/dd");
                 await TransactionsBL.Create(transaction);
                 return RedirectToAction("Index");
             }

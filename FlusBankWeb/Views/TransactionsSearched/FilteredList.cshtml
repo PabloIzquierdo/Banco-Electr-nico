@@ -1,0 +1,47 @@
+﻿@using EntityFlus;
+@using BusinessFlus;
+@using FlusBankWeb.Utilities;
+
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("0"))
+    {
+        ViewBag.Title = "FilteredList";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+        <h2>@ViewBag.Movement</h2>
+        <hr />
+        foreach (var transaction in (ViewBag.Transactions as List<Transaction>))
+        {
+            <div class="row">
+                <div class="col">
+                    <b><i>@transaction.Date</i></b>
+                    <p><b>@transaction.Description</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @{
+                        var sentences = new SentencesBL();
+                        var account = sentences.GetAccount(ViewBag.Account);
+                        var currencyType = new Enums();
+                        currencyType.SetCurrency(account.CurrencyId);
+                    }
+
+                    @if (transaction.BankAccointId == ViewBag.Account)
+                    {
+                        <h4>-@transaction.Amount@currencyType.GetCurrencySymbol()</h4>
+                    }
+                    else
+                    {
+                        <h4>+@transaction.Amount@currencyType.GetCurrencySymbol()</h4>
+                    }
+                </div>
+            </div>
+        }
+    }
+}
+else
+{
+    Layout = "~/Views/Shared/_Error.cshtml";
+}

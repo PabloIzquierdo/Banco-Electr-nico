@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Cuentas bancarias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using BusinessFlus;
+
+@if (Session["User"] != null)
+{
+    if (Session["Rol"].ToString().Equals("0"))
+    {
+        <h2 class="text-center">Buscar movimientos</h2>
+        using (Html.BeginForm("Searcher", "TransactionsSearched", FormMethod.Post))
+        {
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Cuenta</label>
+                    @Html.DropDownList("DropDownListAccounts",
+                   (IEnumerable<SelectListItem>)TempData["Accounts"],
+                   "Selecciona la cuenta",
+                   new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fecha desde (opcional)</label>
+                    <input type="date" name="InitialDate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Fechas hasta (opcional)</label>
+                    <input type="date" name="EndDate" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Importe desde (opcional)</label>
+                    <input type="number" name="InitialAmount" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Importe hasta (opcional)</label>
+                    <input type="number" name="EndAmount" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tipo de movimiento(opcional)</label>
+                    <select name="Movement" class="form-control">
+                        <option value="IncomeExpenses">Ingresos y gastos</option>
+                        <option value="Income">Sólo ingresos</option>
+                        <option value="Expenses">Sólo gastos</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Buscar" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

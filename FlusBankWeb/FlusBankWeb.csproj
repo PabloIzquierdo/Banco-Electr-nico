@@ -269,6 +269,7 @@
     <Content Include="Views\Access\Login.cshtml" />
     <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\TransactionsSearched\Searcher.cshtml" />
+    <Content Include="Views\TransactionsSearched\FilteredList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
