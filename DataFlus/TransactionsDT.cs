@@ -25,13 +25,25 @@ namespace DataFlus
                 var RootAccountId = (from account in db.BankAccounts
                                      where transaction.RootAccount == account.Code
                                      select account.Id).FirstOrDefault();
+
                 ComprobateDistintAccounts(transaction.Addressee, RootAccountId);
                 if (RootAccountId == 0)
                     throw new Exception("La cuenta orgien no está registrada");
                 else
                     transaction.BankAccointId = RootAccountId;
 
+                if(ComprobateBalance(transaction.Amount, transaction.BankAccointId))
+                {
+                    var RootAccount = (from acc in db.BankAccounts
+                                       where acc.Id == RootAccountId
+                                       select acc).FirstOrDefault();
+                    RootAccount.Balance = RootAccount.Balance - (long)transaction.Amount;
 
+                    var ToAccount = (from acc in db.BankAccounts
+                                     where acc.Code == transaction.Addressee
+                                     select acc).FirstOrDefault();
+                    ToAccount.Balance = ToAccount.Balance + (long)transaction.Amount;
+                }
 
                 while (transaction.Id == 0)
                 {
@@ -101,6 +113,21 @@ namespace DataFlus
                     return false;
 
                 return true;
+            }
+        }
+
+        public bool ComprobateBalance(double balance, int id)
+        {
+            using(var db = new FlusBankEntities())
+            {
+                var AccountBalance = (from account in db.BankAccounts
+                              where account.Id == id && account.Balance >= balance
+                              select account).FirstOrDefault();
+                if (AccountBalance != null)
+                    return true;
+
+                throw new Exception("Saldo insuficiente");
+
             }
         }
     }
