@@ -42,7 +42,7 @@ namespace DataFlus
                     var ToAccount = (from acc in db.BankAccounts
                                      where acc.Code == transaction.Addressee
                                      select acc).FirstOrDefault();
-                    ToAccount.Balance = ToAccount.Balance + (long)transaction.Amount;
+                    ToAccount.Balance = ToAccount.Balance + (long)Utilities.Utilities.CurrencyExchange(RootAccount.Id, ToAccount.Id, (long)transaction.Amount);
                 }
 
                 while (transaction.Id == 0)

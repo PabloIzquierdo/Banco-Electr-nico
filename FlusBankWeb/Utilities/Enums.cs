@@ -111,7 +111,7 @@ namespace FlusBankWeb.Utilities
             switch (currency)
             {
                 case Currency.USD:
-
+                    return "USD";
                 case Currency.GBP:
                     return "GBP";
 

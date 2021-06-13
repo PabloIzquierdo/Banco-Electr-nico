@@ -109,5 +109,23 @@ namespace DataFlus.Utilities
 
             return true;
         }
+
+        public static double CurrencyExchange(int to, int from, long amount)
+        {
+            if (to == 1 && from == 2)
+                return amount / 1.41;
+            else if (to == 1 && from == 3)
+                return amount / 0.82;
+            else if (to == 2 && from == 1)
+                return amount * 1.41;
+            else if (to == 3 && from == 1)
+                return amount * 0.82;
+            else if (to == 2 && from == 3)
+                return amount * 1.16;
+            else if (to == 3 && from == 2)
+                return amount / 1.16;
+            else
+                return 1 * amount;
+        }
     }
 }
