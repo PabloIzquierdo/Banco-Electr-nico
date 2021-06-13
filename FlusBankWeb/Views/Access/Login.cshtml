@@ -10,10 +10,11 @@
 </style>
 <img src="~/Content/logo_large.png" width="200" class="center-block" />
 <hr />
-<h2 class="text-center">Inicio de sesión</h2>
+<h2 class="text-center">Bienvenido</h2>
 <hr />
 <div class="row text-center">
     <form action="@Url.Content("~/Access/Login")" method="post">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group" style="display:flex; justify-content:center;">
             <label class="control-label col-md-2">Documento de identidad</label>
             @if (Session["DNI"] != null)

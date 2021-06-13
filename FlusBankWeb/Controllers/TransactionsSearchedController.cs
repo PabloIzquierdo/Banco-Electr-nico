@@ -81,7 +81,7 @@ namespace FlusBankWeb.Controllers
             ViewBag.Transactions = TransactionsSearchedBL.GetAllMovements(DropDownListAccounts, InitialDate, EndDate, Movement, InitialAmount, EndAmount);
             SentencesBL obj = new SentencesBL();
             ViewBag.Account = Convert.ToInt32(DropDownListAccounts);
-            ViewBag.Account = Movement;
+            ViewBag.Movement = Movement;
             return View();
         }
     }
