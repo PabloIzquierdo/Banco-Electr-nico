@@ -270,6 +270,7 @@
     <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\TransactionsSearched\Searcher.cshtml" />
     <Content Include="Views\TransactionsSearched\FilteredList.cshtml" />
+    <Content Include="Views\BankAccount\Bring.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

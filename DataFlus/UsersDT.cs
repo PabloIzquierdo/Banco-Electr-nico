@@ -55,6 +55,13 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
+                var accounts = from account in db.BankAccounts
+                               where account.UserId == id
+                               select account;
+
+                if (accounts.Any())
+                    throw new Exception("Primero debe cerrar las cuentas bancarias");
+
                 var deleteUser = db.Users.Where(us => us.Id == id).FirstOrDefault();
                 db.Users.Remove(deleteUser);
                 await db.SaveChangesAsync();

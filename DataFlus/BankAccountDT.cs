@@ -56,6 +56,7 @@ namespace DataFlus
             using (var db = new FlusBankEntities())
             {
                 var account = db.BankAccounts.Where(acc => acc.Id == id).FirstOrDefault();
+
                 db.BankAccounts.Remove(account);
                 await db.SaveChangesAsync();
             }
@@ -98,7 +99,7 @@ namespace DataFlus
         {
             using (var db = new FlusBankEntities())
             {
-                var account = db.Users.Where(acc => acc.Id == id).FirstOrDefault();
+                var account = db.BankAccounts.Where(acc => acc.Id == id).FirstOrDefault();
                 if (account == null)
                     return false;
 

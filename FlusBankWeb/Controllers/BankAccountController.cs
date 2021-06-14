@@ -60,6 +60,49 @@ namespace FlusBankWeb.Controllers
             }
         }
 
+
+        [HttpGet]
+        public ActionResult Bring()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Bring(BankAccount account)
+        {
+            try
+            {
+                if (!BankAccountBL.ComprobateIdentify(account.User.DNI.Trim()))
+                {
+                    ModelState.AddModelError("", "El DNI/Pasaporte no está registrado");
+                    return View(account);
+                }
+
+                account.User = BankAccountBL.GetUser(account.User.DNI);
+                account.UserId = BankAccountBL.GetUser(account.User.DNI).Id;
+                account.TimeStamp = DateTime.Now;
+                account.Balance = 2500;
+
+                var comission = new Enums();
+                comission.SetComission(account.Type);
+                account.Commission = comission.GetComissionValue(comission.comission);
+                if (!BankAccountBL.ValidateCode(account.Code))
+                    throw new Exception("El IBAN ya está resgistrado");
+                while (!BankAccountBL.ValidateCode(account.Code))
+                {
+                    account.Code = Utilities.Utilities.GenerateCode();
+                }
+
+                await BankAccountBL.Create(account);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(account);
+            }
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null || !BankAccountBL.ExistsAccount(id.Value))

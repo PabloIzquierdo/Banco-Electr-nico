@@ -19,23 +19,11 @@
             <dl class="dl-horizontal">
 
                 <dt>
-                    <label>Moneda</label>
-                </dt>
-
-                <dd>
-                    @{
-                        var currencyType = new Enums();
-                        currencyType.SetCurrency(Model.CurrencyId);
-                    }
-                    <span>@currencyType.GetCurrency()</span>
-                </dd>
-
-                <dt>
                     <label>Fecha de creación</label>
                 </dt>
 
                 <dd>
-                    @Model.TimeStamp.ToShortDateString()
+                    @Html.DisplayFor(model => model.TimeStamp)
                 </dd>
 
                 <dt>
@@ -44,6 +32,14 @@
 
                 <dd>
                     @Html.DisplayFor(model => model.Type)
+                </dd>
+
+                <dt>
+                    <label>Moneda</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CurrencyId)
                 </dd>
 
                 <dt>

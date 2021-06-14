@@ -36,7 +36,7 @@ namespace FlusBankWeb.Controllers
                 ModelState.AddModelError("", ex.Message);
                 return View(user);
             }
-        }
+        }      
 
         [HttpGet]
         public ActionResult Edit(int? id)

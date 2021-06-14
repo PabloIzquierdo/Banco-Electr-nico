@@ -21,6 +21,7 @@
         <h2>Cuentas bancarias</h2>
         <p>
             @Html.ActionLink("Crear cuenta", "Create", new { }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Traer cuenta", "Bring", new { }, new { @class = "btn btn-primary" })
         </p>
         <table class="table" id="tableDemo">
             <thead>
@@ -75,8 +76,8 @@
                         </td>
                         <td>
                             @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                            @Html.ActionLink("Información", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Cerrar cuenta", "Delete", new { id = item.Id })
                         </td>
                     </tr>
                 }
