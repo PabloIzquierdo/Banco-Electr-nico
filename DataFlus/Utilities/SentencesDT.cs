@@ -45,8 +45,8 @@ namespace DataFlus.Utilities
             using (var db = new FlusBankEntities())
             {
                 var id = (from idAccount in db.BankAccounts
-                         where idAccount.Code == code
-                         select idAccount.Id).FirstOrDefault();
+                          where idAccount.Code == code
+                          select idAccount.Id).FirstOrDefault();
 
                 return (from transactions in db.Transactions
                         where transactions.Addressee == code || transactions.BankAccointId == id
@@ -59,8 +59,66 @@ namespace DataFlus.Utilities
             using (var db = new FlusBankEntities())
             {
                 return (from account in db.BankAccounts
-                          where account.Id == id
-                          select account).FirstOrDefault();
+                        where account.Id == id
+                        select account).FirstOrDefault();
+            }
+        }
+
+        public long GetTotalBalance(string Identity)
+        {
+            using (var db = new FlusBankEntities())
+            {
+                int userId = (from users in db.Users
+                              where users.DNI == Identity
+                              select users.Id).FirstOrDefault();
+
+                List<long> accounts = (from account in db.BankAccounts
+                                       where account.UserId == userId
+                                       select account.Balance).ToList();
+                long balance = 0;
+                foreach (long currentBalance in accounts)
+                {
+                    balance += currentBalance;
+                }
+
+                return balance;
+            }
+        }
+
+        public long GetIncomes(string code)
+        {
+            List<Transaction> list = GetAccountTransactions(code);
+            long incomes = 0;
+            foreach (Transaction transaction in list)
+            {
+                if (transaction.Addressee.ToString() == code)
+                    incomes += (long)transaction.Amount;
+                else
+                    continue;
+            }
+
+            return incomes;
+        }
+
+        public long GetExpenses(string code)
+        {
+            List<Transaction> list = GetAccountTransactions(code);
+            using (var db = new FlusBankEntities())
+            {
+                int accountId = (from account in db.BankAccounts
+                                 where account.Code.ToString() == code
+                                 select account.Id).FirstOrDefault();
+
+                long expenses = 0;
+                foreach(Transaction transaction in list)
+                {
+                    if (transaction.BankAccointId == accountId)
+                        expenses += Convert.ToInt64(transaction.Amount);
+                    else
+                        continue;
+                }
+
+                return expenses;
             }
         }
     }

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using BusinessFlus;
+@using FlusBankWeb.Utilities;
+
+@{
     ViewBag.Title = "Inicio";
 }
 @if (Session["User"] != null)
@@ -54,6 +57,117 @@
     }
     else
     {
-        <h2>Vista cliente</h2>
+        var Sentences = new SentencesBL();
+        var account = Sentences.GetBanksUserAccounts(Session["DNI"].ToString()).ToArray();
+        string code = "";
+        long balance = 0;
+        int currentId = 0;
+        int accountId = -1;
+        foreach (var acc in account[0])
+        {
+            code = acc.Code;
+            balance = acc.Balance;
+            currentId = acc.CurrencyId;
+            accountId = acc.Id;
+            break;
+        }
+        Enums enums = new Enums();
+        enums.SetCurrency(currentId);
+
+        <h1 class="text-center">Consultas generales</h1>
+        <hr />
+
+        <div class="container">
+            <a href="@Url.Action("Index","BankAccount")">
+                <div class="col-lg-4 bg-danger center-block">
+                    <h3>@balance @enums.GetCurrencySymbol()</h3>
+                    <span>Ver cuenta</span>
+                </div>
+            </a>
+            <a href="@Url.Action("FilteredList","TransactionsSearched", new {
+                    @DropDownListAccounts = accountId.ToString(),
+                    @InitialDate = "1/"+ DateTime.Now.Month.ToString() +"/" + DateTime.Now.Year.ToString(),
+                    @EndDate = DateTime.DaysInMonth(DateTime.Now.Month, DateTime.Now.Month) + "/"+ DateTime.Now.Month.ToString() +"/" + DateTime.Now.Year.ToString(),
+                    @Movement = "Income",
+                    @InitialAmount = "",
+                    @EndAmount = ""
+                    })">
+                <div class="col-lg-4 bg-danger center-block"">
+                    <h3>@Sentences.GetIncomes(code)</h3>
+                    <span>Ingresos</span>
+                </div>
+            </a>
+            <a href="@Url.Action("FilteredList","TransactionsSearched", new {
+                    @DropDownListAccounts = accountId.ToString(),
+                    @InitialDate = "1/"+ DateTime.Now.Month.ToString() +"/" + DateTime.Now.Year.ToString(),
+                    @EndDate = DateTime.DaysInMonth(DateTime.Now.Month, DateTime.Now.Month) + "/"+ DateTime.Now.Month.ToString() +"/" + DateTime.Now.Year.ToString(),
+                    @Movement = "Expenses",
+                    @InitialAmount = "",
+                    @EndAmount = ""
+                    })">
+                <div class="col-lg-4 bg-danger center-block"">
+                    <h3>@Sentences.GetExpenses(code)</h3>
+                    <span>Gastos</span>
+                </div>
+            </a>
+        </div>
+
+        <a href="@Url.Action("Index","BankAccount")">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 left">
+                        <h2>Cuentas</h2>
+                    </div>
+                    <div class="col-md-6 right">
+                        <h3>@Sentences.GetTotalBalance(Session["DNI"].ToString())</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 left">
+
+                        <h2>Cuentas *@code.Substring(code.Length - 4, 4)</h2>
+                        <span>·@code.Substring(code.Length - 4, 4)</span>
+                    </div>
+                    <div class="col-md-6 right">
+                        <h3>@balance @enums.GetCurrencySymbol()</h3>
+                        <span>Disponible</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <div class="container">
+            <h2>Crear cuenta bancaria</h2>
+            <p>Una vez registrado el cliente se le podrá crear una cuenta bancaria</p>
+            @Html.ActionLink("Crear cuenta", "../BankAccount/Create", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="container">
+            <h2>Operaciones disponibles</h2>
+            <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
+            @Html.ActionLink("Consultar/facilitar operación", "../BanksOperation/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="container">
+            <h2>Consulta de movimientos</h2>
+            <p>Podremos ayudar al cliente a consultar los movimientos que puede realizar.</p>
+            @Html.ActionLink("Ayuda sobre movimientos realizados", "../Transactions/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <hr />
+
+        <h1 class="text-center">Otras consultas</h1>
+        <hr />
+        <div class="container">
+            <h2>Consultar información del cliente</h2>
+            <p>Mostrará información sobre los clientes</p>
+            @Html.ActionLink("Ver información", "../Users/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
+
+        <div class="container">
+            <h2>Ver cuentas bancarias de los clientes</h2>
+            <p>Consultar datos de la cuenta bancaria de un cliente</p>
+            @Html.ActionLink("Consulta datos", "../BankAccount/Index", new { }, new { @class = "btn btn-s btn-primary" })
+        </div>
     }
 }

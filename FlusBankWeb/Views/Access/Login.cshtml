@@ -19,7 +19,7 @@
             <label class="control-label col-md-2">Documento de identidad</label>
             @if (Session["DNI"] != null)
             {
-                <input class="form-control" value="@Session["DNI"]" type="text" name="Dni" />
+                <input class="form-control" value="@Session["DNI"]" type="text" name="Dni" autofocus/>
             }
             else
             {

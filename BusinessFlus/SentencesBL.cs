@@ -36,5 +36,20 @@ namespace BusinessFlus
         {
             return obj.GetAccount(id);
         }
+
+        public long GetTotalBalance(string Identity)
+        {
+            return obj.GetTotalBalance(Identity);
+        }
+
+        public long GetIncomes(string code)
+        {
+            return obj.GetIncomes(code);
+        }
+
+        public long GetExpenses(string code)
+        {
+            return obj.GetExpenses(code);
+        }
     }
 }
